@@ -1,0 +1,16 @@
+.full-page {
+    // height: 100%;
+    background-color: #EEEEEE;
+    // background-color: #232221;
+    & header {
+        // background: linear-gradient(135deg,#0000DD, #0000FF);
+        // background-color: #1871DC;
+        background-color: #0E3D88;
+    }
+}
+
+// ページネーション
+ul.pagination {
+    justify-content: center;
+    margin: 100px 0;
+}

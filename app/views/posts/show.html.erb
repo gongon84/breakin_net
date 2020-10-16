@@ -1,0 +1,80 @@
+<div class="container">
+    <%= link_to '戻る', "/posts/#{@pref}", class: "btn btn-outline-primary mt-5" %>
+
+    <%# 詳細 %>
+    <div class="text-center my-5">
+        <h1><%= "#{@post.place} （#{params[:pref]}）" %></h1>
+    </div>
+    
+    <div class="card my-3">
+      <div class="row card-body border-bottom">
+        <div class="col-md-5 p-3">
+            <h2 class="card-title ml-3"><%= @post.place %></h2>
+            <h4 class="ml-3 my-3"><span class="text-secondary">最寄り：</span><%= @post.station %></h4>
+            <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "btn btn-outline-primary ml-3") %>
+            <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "btn btn-outline-primary ml-3", method: "post") %>
+        </div>
+        <div class="col-md-7 p-3" style="word-wrap: break-word;">
+            <h4>施設：<%= @post.facility %></h4>
+            <h4 class="card-text">時間：<%= @post.time %></h4>
+            <h4 class="card-text">料金：<%= @post.price %>円</h4>
+            <h4 class="card-text">タグ：<span class="text-primary"><%= @post.tag %></span></h4>
+        </div>
+      </div>
+      <div class="row card-body">
+        <div class="col-md-5 ml-3">
+          <h3 class="">＜メモ＞</h3>
+          <h4 class="my-4"><%= @post.memo %><br></h4>
+        </div>
+      </div>
+    </div>
+
+    <%# 掲示板 %>
+    <h1 class="text-center pt-5 my-5">掲示板</h1>
+    <div class="card">
+      <div class="card-body">
+        <%= link_to 'コメント', "#", class: "btn btn-outline-primary my-2" %>
+        <div class="row pl-3 mt-1 border-bottom border-top">
+          <div class="col-md-1 p-3">
+            <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+          </div>
+          <div class="col-md-11 p-3" style="word-wrap: break-word;">
+            <h5>aさん</h5>
+            <h4>とても使いやすいです</h4>
+          </div>
+        </div>
+        <div class="row pl-3 border-bottom">
+          <div class="col-md-1 p-3">
+            <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+          </div>
+          <div class="col-md-11 p-3" style="word-wrap: break-word;">
+            <h5>bさん</h5>
+            <h4>来年の３月から工事らしい</h4>
+          </div>
+        </div>
+        <div class="row pl-3 border-bottom">
+          <div class="col-md-1 p-3">
+            <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+          </div>
+          <div class="col-md-11 p-3" style="word-wrap: break-word;">
+            <h5>cさん</h5>
+            <h4>今週は休館</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# 利用者 %>
+    <h1 class="text-center py-3 mt-5">よく利用する人</h1>
+    <div class="row">
+      <div class="col-md-1 p-3">
+        <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+      </div>
+      <div class="col-md-1 p-3">
+        <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+      </div>
+      <div class="col-md-1 p-3">
+        <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+      </div>
+    </div>
+</div>
