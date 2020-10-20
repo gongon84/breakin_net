@@ -45,4 +45,4 @@ Post.create!(
 
 
 # 更新 => rake db:seed
-# データリセット => rails db:reset
+# データリセット => rails db:reset < rails db:migrate:reset

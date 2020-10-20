@@ -11,20 +11,25 @@
         <div class="col-md-5 p-3">
             <h2 class="card-title ml-3"><%= @post.place %></h2>
             <h4 class="ml-3 my-3"><span class="text-secondary">最寄り：</span><%= @post.station %></h4>
-            <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "btn btn-outline-primary ml-3") %>
-            <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "btn btn-outline-primary ml-3", method: "post") %>
         </div>
         <div class="col-md-7 p-3" style="word-wrap: break-word;">
-            <h4>施設：<%= @post.facility %></h4>
-            <h4 class="card-text">時間：<%= @post.time %></h4>
-            <h4 class="card-text">料金：<%= @post.price %>円</h4>
-            <h4 class="card-text">タグ：<span class="text-primary"><%= @post.tag %></span></h4>
+            <h4><span class="text-secondary">施設：</span><%= @post.facility %></h4>
+            <h4 class="card-text"><span class="text-secondary">時間：</span><%= @post.time %></h4>
+            <h4 class="card-text"><span class="text-secondary">料金：</span><%= @post.price %>円</h4>
+            <h4 class="card-text"><span class="text-secondary">タグ：<span><span class="text-primary"><%= @post.tag %></span></h4>
         </div>
       </div>
       <div class="row card-body">
-        <div class="col-md-5 ml-3">
+        <div class="col-md-11 ml-3">
           <h3 class="">＜メモ＞</h3>
-          <h4 class="my-4"><%= @post.memo %><br></h4>
+          <h4 class="mt-4"><%= @post.memo %><br></h4>
+        </div>
+      </div>
+      <div class="row card-body pt-0">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+        <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "btn btn-outline-primary ml-3") %>
+        <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "btn btn-outline-primary ml-3", method: "post") %>
         </div>
       </div>
     </div>
@@ -33,34 +38,73 @@
     <h1 class="text-center pt-5 my-5">掲示板</h1>
     <div class="card">
       <div class="card-body">
-        <%= link_to 'コメント', "#", class: "btn btn-outline-primary my-2" %>
-        <div class="row pl-3 mt-1 border-bottom border-top">
-          <div class="col-md-1 p-3">
-            <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
-          </div>
-          <div class="col-md-11 p-3" style="word-wrap: break-word;">
-            <h5>aさん</h5>
-            <h4>とても使いやすいです</h4>
+
+        <%# コメント入力欄%>
+        <p>
+          <a class="btn btn-light" style="border:1px solid" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            コメント
+          </a>
+        </p>
+        <div class="collapse pt-0" id="collapseExample">
+          <div class="row d-flex px-3 mb-3">
+            <div class="col-md-1 align-self-center">
+              <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+            </div>
+            <%# フォーム %>
+            <div class="col-md-11" style="word-wrap: break-word;">
+              <%= form_tag("/user/create") do %>
+                <%# post_id　非表示 %>
+                <div class="form-group m-0">
+                  <input class="form-control" name="post_id" id="post_id" type="hidden" value="<%= @post.id %>" readonly="readonly">
+                </div>
+                <%# 都道府県　非表示%>
+                <div class="form-group m-0">
+                  <input class="form-control" name="pref" id="pref" type="hidden" value="<%= @pref %>" readonly="readonly">
+                </div>
+                <%# 場所　非表示 %>
+                <div class="form-group m-0">
+                  <input class="form-control" name="place" id="place" type="hidden" value="<%= @place %>" readonly="readonly">
+                </div>
+                <%# ニックネーム %>
+                <div class="form-group mt-0 w-25">
+                  <input class="form-control" name="name"  id="name" type="text" placeholder="ニックネーム">
+                </div>
+                <%# コメント %>
+                <div class="d-flex">
+                  <div class="form-group mt-0 flex-grow-1">
+                    <textarea class="form-control" name="comment" id="comment" placeholder="コメント" required="required"></textarea>
+                  </div>
+                  <div class="pl-3 align-self-center">
+                    <a href="#" class="btn btn-raised btn-light" style="border:1px solid;">キャンセル</a>
+                    <button type="submit" value="投稿" class="btn btn-raised btn-light" style="border:1px solid">投稿</button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-        <div class="row pl-3 border-bottom">
-          <div class="col-md-1 p-3">
-            <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
-          </div>
-          <div class="col-md-11 p-3" style="word-wrap: break-word;">
-            <h5>bさん</h5>
-            <h4>来年の３月から工事らしい</h4>
-          </div>
-        </div>
-        <div class="row pl-3 border-bottom">
-          <div class="col-md-1 p-3">
-            <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
-          </div>
-          <div class="col-md-11 p-3" style="word-wrap: break-word;">
-            <h5>cさん</h5>
-            <h4>今週は休館</h4>
-          </div>
-        </div>
+
+        <%# コメント欄 %>
+        <% if @comments.where(pref: @pref, place: @place).size > 0 %>
+          <% @comments.where(pref: @pref, place: @place).each do |comment| %>
+            <div class="row pl-3 mt-1 border-top">
+              <div class="col-md-1 px-3 pt-3 pb-1">
+                <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
+              </div>
+              <div class="col-md-9 px-3 pt-3 pb-1" style="word-wrap: break-word;">
+                <div class="d-flex">
+                  <h6><%= comment.name%><span class="text-black-50">：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
+                </div>
+                <h4><%= comment.comment %></h4>
+              </div>
+              <div class="col-md-2 d-flex">
+                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.name}/#{comment.comment}/destroy", class: "btn btn-outline-primary align-self-center", method: "post") %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h3>コメントなし</h3>
+        <% end %>
       </div>
     </div>
 
@@ -77,4 +121,7 @@
         <h4 style="background-color:gray; height:60px; width:60px; border-radius:50%;"></h4>
       </div>
     </div>
+
+    <%# post_id　アソシエーション %>
+    <%= @post.id %>
 </div>
