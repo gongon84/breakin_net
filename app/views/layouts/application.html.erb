@@ -16,14 +16,14 @@
     <div class="full-page">
 
     <%# ヘッダー%>
-    <header class="py-3">
+    <header class="py-sm-3">
       <nav class="navbar navbar-expand-lg navbar-dark border-secondary">
         <%= link_to("Breakin' Net", "/", class: "navbar-brand font-weight-bolder font-italic ml-3", style: "font-size:26pt; color:white;") %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav nav mt-2 ml-5">
+          <ul class="navbar-nav nav mt-2 ml-sm-5">
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'top' %>">
               <%= link_to('トップページ', "/", class: "nav-link font-italic ml-3", style: "font-size:14pt;") %>
             </li>

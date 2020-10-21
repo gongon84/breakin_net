@@ -14,3 +14,21 @@ ul.pagination {
     justify-content: center;
     margin: 100px 0;
 }
+
+
+// スマホデバイス（タブレット, 600px 未満）
+@media (max-width: 600px) {
+    // テーブルページ
+    .page-title h1 { font-size: 2rem; }
+    .no-regi h1 { font-size: 1rem; }
+
+    .example-card-up {
+        h2 { font-size: 1.5rem; }
+        h4 { font-size: 1rem; }
+        a {  }
+    }
+
+    .example-card-down {
+        h4 { font-size: 1.0rem; }
+    }
+}
