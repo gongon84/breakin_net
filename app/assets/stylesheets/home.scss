@@ -1,16 +1,35 @@
-.jumbotron-extend {
-    height: 100vh;
-    min-height: 300px;
-    // margin-top: -110px;
-    background: image-url('top_background.png');
-    background-size: cover;
+// トップページ
+.main-title {
+  height: 1000px;
+
+  & div {
+    position: relative;
+    top: 25%;
+  }
+
+  & h4 { margin-bottom: 5rem; }
 }
 
-.jumbotron-container {
-    position: relative;
-    top: 43%;
-    transform: translateY(-50%);
-}
+// スマホデバイス（タブレット, 480px 未満）
+@media (max-width: 600px) {
+  
+  // トップページ
+  .main-title {
+    height: 500px;
+
+    & div {
+      position: relative;
+      top: 15%;
+    }
+
+    & h3 { font-size: 2em; }
+
+    & h4 {
+      font-size: 1em;
+      margin-bottom: 1rem;
+    }
+  }
+ }
 
 
 
