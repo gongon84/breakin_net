@@ -20,9 +20,9 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# デプロイ用　追記
+# database: db/production.sqlite3
 production:
   <<: *default
-  # database: db/production.sqlite3
-  # デプロイ用　追記
   adapter: postgresql
   encoding: unicode
