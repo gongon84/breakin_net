@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get "/comment/:pref/:place" => "user#index"
   post "/user/create" => "user#create"
   post "/user/:pref/:place/:name/:comment/destroy" => "user#destroy"
+
+  root "home#top"
 end
