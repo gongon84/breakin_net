@@ -8,11 +8,11 @@
     
     <div class="card my-3">
       <div class="row card-body border-bottom">
-        <div class="show-card-up col-md-5 p-sm-3">
-            <h2 class="card-title ml-sm-3 d-none"><%= @post.place %></h2>
-            <h4 class="ml-sm-3 my-sm-3"><span class="text-secondary">最寄り：</span><%= @post.station %></h4>
+        <div class="show-card-up col-md-5 p-md-3">
+            <h2 class="card-title ml-md-3 d-none"><%= @post.place %></h2>
+            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= @post.station %></h4>
         </div>
-        <div class="show-card-down col-md-7 p-sm-3" style="word-wrap: break-word;">
+        <div class="show-card-down col-md-7 p-md-3" style="word-wrap: break-word;">
             <h4><span class="text-secondary">施設：</span><%= @post.facility %></h4>
             <h4 class="card-text"><span class="text-secondary">時間：</span><%= @post.time %></h4>
             <h4 class="card-text"><span class="text-secondary">料金：</span><%= @post.price %>円</h4>
@@ -91,14 +91,15 @@
               <div class="col-2 col-md-1 px-3 pt-3 pb-1">
                 <h4 class="img-temp"></h4>
               </div>
-              <div class="col-6 col-xs-7 col-md-9 px-3 pt-3 pb-1" style="word-wrap: break-word;">
+              <div class="comment col-6 col-xs-7 col-md-9 px-md-4 px-1 pt-3 pb-1" style="word-wrap: break-word;">
                 <div class="d-flex">
                   <h6><%= comment.name%><span class="text-black-50">：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
                 </div>
                 <h4><%= comment.comment %></h4>
               </div>
               <div class="col-4 col-xs-3 col-md-2 d-flex">
-                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.name}/#{comment.comment}/destroy", class: "btn btn-outline-primary align-self-center", method: "post") %>
+                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.name}/#{comment.comment}/destroy", class: "d-none d-lg-inline-block btn btn-outline-primary align-self-center", method: "post") %>
+                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.name}/#{comment.comment}/destroy", class: "d-inline-block d-lg-none btn btn-sm btn-outline-primary align-self-center", method: "post") %>
               </div>
             </div>
           <% end %>

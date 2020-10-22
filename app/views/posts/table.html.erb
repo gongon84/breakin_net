@@ -18,16 +18,17 @@
     <% @post.where(pref: @pref).each do |post| %>
       <div class="card my-3">
         <div class="row card-body border-bottom">
-          <div class="table-card-up col-md-5 col-sm-12 p-3">
-            <h2 class="card-title ml-sm-3"><%= post.place %></h2>
-            <h4 class="ml-sm-3 my-3"><span class="text-secondary">最寄り：</span><%= post.station %></h4>
-            <%= link_to("詳しく見る", "/posts/#{@pref}/#{post.place}", class: "btn btn-outline-primary ml-sm-3") %>
+          <div class="table-card-up col-md-5 col-12 p-md-3">
+            <h2 class="card-title ml-md-3"><%= post.place %></h2>
+            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= post.station %></h4>
+            <%= link_to("詳しく見る", "/posts/#{@pref}/#{post.place}", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
           </div>
-          <div class="table-card-down col-md-7 col-sm-12 p-3" style="word-wrap: break-word;">
+          <div class="table-card-down col-md-7 col-12 p-md-3" style="word-wrap: break-word;">
             <h4>施設：<%= post.facility %></h4>
             <h4 class="card-text">時間：<%= post.time %></h4>
             <h4 class="card-text">料金：<%= post.price %>円</h4>
             <h4 class="card-text">タグ：<span class="text-primary"><%= post.tag %></span></h4>
+            <%= link_to("詳しく見る", "/posts/#{@pref}/#{post.place}", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
           </div>
         </div>
       </div>

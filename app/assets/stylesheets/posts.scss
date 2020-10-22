@@ -40,7 +40,7 @@ ul.pagination {
         height: 100%;
 
         // ヘッダー
-        & header  .navbar-brand { font-size: 1.2rem; }
+        & header  .navbar-brand { font-size: 1.5rem; }
 
         // フッター
         & footer p { text-align: center; }
@@ -61,6 +61,7 @@ ul.pagination {
     }
 
     // showページ
+    // 施設カード
     .show-card-up {
         h2 { font-size: 1.5rem; }
         h4 { font-size: 1rem; }
@@ -76,5 +77,9 @@ ul.pagination {
         height:40px;
         width:40px;
         border-radius:50%;
+    }
+
+    .comment {
+        & h6 { font-size: 0.5rem;}
     }
 }
