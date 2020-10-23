@@ -21,7 +21,6 @@ class PostsController < ApplicationController
     @pref = params[:pref]
     @place = params[:place]
     @post = Post.find_by(pref: @pref, place: @place)
-    # @comments = User.where(pref: params[:pref], place: params[:place]).order(created_at: :desc)
     @comments = User.all.order(created_at: :desc)
   end
 
