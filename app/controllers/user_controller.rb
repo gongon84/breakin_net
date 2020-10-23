@@ -15,7 +15,7 @@ class UserController < ApplicationController
   def destroy
     @post = Post.find_by(pref: params[:pref], place: params[:place])
     # @comment = User.find_by(post_id: @post.id, pref: params[:pref], place: params[:place], name: params[:name], comment: params[:comment])
-    @comment = User.find_by(pref: params[:pref])
+    @comment = User.find_by(id: params[:id])
     @comment.destroy
     redirect_to("/posts/#{params[:pref]}/#{params[:place]}")
   end
