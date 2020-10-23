@@ -34,7 +34,7 @@
     
     <%# 詳細 %>
     <div class="card my-3">
-      
+
       <%# コメント　作成データ %>
 
       <%# 場所データ %>
@@ -50,14 +50,16 @@
       <div class="row card-body">
         <div class="memo-card col-md-11 ml-md-3">
           <h3>メモ</h3>
-          <h4><%= safe_join(@post.memo.split("\n"), tag(:br)) %><br></h4>
+          <h4><%= safe_join(@post.memo.split("\n"), tag(:br)) %></h4>
         </div>
       </div>
       <div class="row card-body pt-0">
-        <div class="col-md-9"></div>
-        <div class="col-md-3">
-        <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "btn btn-outline-primary ml-3") %>
-        <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "btn btn-outline-primary ml-3", method: "post") %>
+        <%# <div class="col-2 col-md-9"></div> %>
+        <div class="col-12 col-md-12 d-flex justify-content-end">
+          <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
+          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-none d-md-inline-block btn btn-outline-primary ml-2", method: "post") %>
+          <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-inline-block d-md-none btn btn-sm btn-outline-primary") %>
+          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-inline-block d-md-none btn-sm btn btn-outline-primary ml-2", method: "post") %>
         </div>
       </div>
     </div>
@@ -123,7 +125,6 @@
                 <div class="d-flex">
                   <h6 class="mb-1 mb-md-2"><%= comment.name%><span class="text-black-50">：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
                 </div>
-                <%# simple_format()を使いたいが、destroyの時にparamsが改行を受け取れない %>
                 <h4><%= safe_join(comment.comment.split("\n"), tag(:br)) %></h4>
               </div>
               <div class="col-4 col-xs-3 col-md-2 d-flex">
