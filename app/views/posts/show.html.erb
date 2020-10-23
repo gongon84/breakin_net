@@ -49,7 +49,11 @@
       <div class="row card-body">
         <div class="memo-card col-md-11 ml-md-3">
           <h3>メモ</h3>
-          <h4><%= safe_join(@post.memo.split("\n"), tag(:br)) %></h4>
+          <% if @post.memo %>
+            <h4><%= safe_join(@post.memo.split("\n"), tag(:br)) %></h4>
+          <% else %>
+            <h4><%= @post.memo %></h4>
+          <% end %>
         </div>
       </div>
       <div class="row card-body pt-0">
