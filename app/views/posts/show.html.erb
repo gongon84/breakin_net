@@ -59,7 +59,8 @@
       <div class="row card-body pt-0">
         <div class="col-12 col-md-12 d-flex justify-content-end">
           <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
-          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-none d-md-inline-block btn btn-outline-primary ml-2", method: "post") %>
+          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-none d-md-inline-block btn btn-outline-primary ml-2", 
+          method: "post", data: {confirm: '【確認】この施設を削除してよろしいですか？'} ) %>
           <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-inline-block d-md-none btn btn-sm btn-outline-primary") %>
           <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-inline-block d-md-none btn-sm btn btn-outline-primary ml-2", method: "post") %>
         </div>
