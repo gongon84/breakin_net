@@ -62,12 +62,7 @@ ul.pagination {
 
     // showページ
     // 施設カード
-    .show-card-up {
-        h2 { font-size: 1.5rem; }
-        h4 { font-size: 1rem; }
-    }
-
-    .show-card-down {
+    .show-card-up, .show-card-down {
         h4 { font-size: 1.0rem; }
     }
 

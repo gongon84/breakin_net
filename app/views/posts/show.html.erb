@@ -1,28 +1,56 @@
 <div class="container">
-    <%= link_to '戻る', "/posts/#{@pref}", class: "btn btn-outline-primary mt-5" %>
+    <%# 戻るボタン %>
+    <%= link_to '戻る', "/posts/#{@pref}", class: "btn btn-outline-primary mt-md-5 mt-3" %>
 
-    <%# 詳細 %>
-    <div class="page-title text-center my-5">
-        <h1><%= "#{@post.place} （#{params[:pref]}）" %></h1>
+    <div class="creat-time mt-4 ml-2">
+      <time datetime="<%= @post.updated_at %>">
+        <h6>作成者：テスト太郎(今後実施予定)</h6>
+        <h6 >作成日：<%= @post.created_at.strftime('%Y/%m/%d') %></h6>
+        <h6 >更新　：<%= time_ago_in_words(@post.updated_at) %>前</h6>
+      </time>
     </div>
+
+    <%# 場所名 %>
+    <div class="page-title text-center mb-4 mt-4 mb-md-5">
+        <h1><%= "#{@post.place}" %></h1>
+    </div>
+
+
+<%# 「コメント　作成データ」のところに入れるかもしれない %>
+<%
+=begin %>
+  <div class="row card-body border-bottom">
+    <div class="show-card-up col-12 p-md-3" style="word-wrap: break-word;">
+      <h4 class="ml-md-3"><span class="text-secondary">作成者：</span>テスト太郎(今後実施予定)</h4>
+      <time datetime="<%= @post.updated_at %>">
+        <h4 class="ml-md-3 card-text"><span class="text-secondary">作成日：</span><%= @post.created_at.strftime('%Y/%m/%d') %></h4>
+      </time>
+      <h4 class="ml-md-3 mt-2 card-text"><span class="text-secondary">更新　：</span><%= time_ago_in_words(@post.updated_at) %>前</h4>
+    </div>
+  </div>
+<%
+=end
+%>
     
+    <%# 詳細 %>
     <div class="card my-3">
+      
+      <%# コメント　作成データ %>
+
+      <%# 場所データ %>
       <div class="row card-body border-bottom">
-        <div class="show-card-up col-md-5 p-md-3">
-            <h2 class="card-title ml-md-3 d-none"><%= @post.place %></h2>
-            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= @post.station %></h4>
-        </div>
-        <div class="show-card-down col-md-7 p-md-3" style="word-wrap: break-word;">
-            <h4><span class="text-secondary">施設：</span><%= @post.facility %></h4>
-            <h4 class="card-text"><span class="text-secondary">時間：</span><%= @post.time %></h4>
-            <h4 class="card-text"><span class="text-secondary">料金：</span><%= @post.price %>円</h4>
-            <h4 class="card-text"><span class="text-secondary">タグ：<span><span class="text-primary"><%= @post.tag %></span></h4>
+        <div class="show-card-down col-12 p-md-3" style="word-wrap: break-word;">
+            <h4 class="ml-md-3"><span class="text-secondary">最寄り：</span><%= @post.station %></h4>
+            <h4><span class="ml-md-3 text-secondary">施設　：</span><%= @post.facility %></h4>
+            <h4 class="ml-md-3 card-text"><span class="text-secondary">時間　：</span><%= @post.time %></h4>
+            <h4 class="ml-md-3 card-text"><span class="text-secondary">料金　：</span><%= @post.price %>円</h4>
+            <h4 class="ml-md-3 card-text"><span class="text-secondary">タグ　：<span><span class="text-primary"><%= @post.tag %></span></h4>
         </div>
       </div>
       <div class="row card-body">
         <div class="memo-card col-md-11 ml-md-3">
-          <h3 class="">＜メモ＞</h3>
-          <h4 class="mt-4"><%= @post.memo %><br></h4>
+          <h3>メモ</h3>
+          <h4><%= safe_join(@post.memo.split("\n"), tag(:br)) %><br></h4>
         </div>
       </div>
       <div class="row card-body pt-0">
@@ -71,12 +99,12 @@
                 </div>
                 <%# コメント %>
                 <div class="d-flex">
-                  <div class="form-group mt-0 flex-grow-1">
+                  <div class="form-group mt-0 w-75">
                     <textarea class="form-control" name="comment" id="comment" placeholder="コメント" required="required"></textarea>
                   </div>
-                  <div class="pl-3 align-self-center">
-                    <a href="#" class="btn btn-raised btn-light" style="border:1px solid;">キャンセル</a>
-                    <button type="submit" value="投稿" class="btn btn-raised btn-light" style="border:1px solid">投稿</button>
+                  <div class="pl-2 pl-md-3 pb-3 pb-md-0 ml-auto align-self-center">
+                    <button type="submit" value="投稿" class="mb-1 mb-md-0 btn btn-sm btn-raised btn-light" style="border:1px solid">投稿</button>
+                    <a href="#" class="btn btn-sm btn-raised btn-light" style="border:1px solid;">キャンセル</a>
                   </div>
                 </div>
               <% end %>
@@ -93,13 +121,14 @@
               </div>
               <div class="comment col-6 col-xs-7 col-md-9 px-md-4 px-1 pt-3 pb-1" style="word-wrap: break-word;">
                 <div class="d-flex">
-                  <h6><%= comment.name%><span class="text-black-50">：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
+                  <h6 class="mb-1 mb-md-2"><%= comment.name%><span class="text-black-50">：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
                 </div>
-                <h4><%= comment.comment %></h4>
+                <%# simple_format()を使いたいが、destroyの時にparamsが改行を受け取れない %>
+                <h4><%= safe_join(comment.comment.split("\n"), tag(:br)) %></h4>
               </div>
               <div class="col-4 col-xs-3 col-md-2 d-flex">
-                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.name}/#{comment.comment}/destroy", class: "d-none d-lg-inline-block btn btn-outline-primary align-self-center", method: "post") %>
-                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.name}/#{comment.comment}/destroy", class: "d-inline-block d-lg-none btn btn-sm btn-outline-primary align-self-center", method: "post") %>
+                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.id}/destroy", class: "d-none d-lg-inline-block btn btn-outline-primary align-self-center", method: "post") %>
+                <%= link_to("　削除　", "/user/#{@pref}/#{@place}/#{comment.id}/destroy", class: "d-inline-block d-lg-none btn btn-sm btn-outline-primary align-self-center", method: "post") %>
               </div>
             </div>
           <% end %>

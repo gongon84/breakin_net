@@ -2,8 +2,8 @@
 <div class="container">
 
   <%# 戻る・追加ボタン %>
-  <%= link_to '戻る', "/posts/index", class: "btn btn-outline-primary mt-5" %>
-  <%= link_to '追加', "/posts/#{@pref}/new", class: "btn btn-outline-primary mt-5 float-right" %>
+  <%= link_to '戻る', "/posts/index", class: "btn btn-outline-primary mt-md-5 mt-3" %>
+  <%= link_to '追加', "/posts/#{@pref}/new", class: "btn btn-outline-primary mt-md-5 mt-3 float-right" %>
 
   <%# ページタイトル %>
   <div class="page-title text-center my-5">
@@ -18,12 +18,15 @@
     <% @post.where(pref: @pref).each do |post| %>
       <div class="card my-3">
         <div class="row card-body border-bottom">
-          <div class="table-card-up col-md-5 col-12 p-md-3">
+          <div class="table-card-up col-md-5 col-12 px-md-3">
+            <time datetime="<%= post.updated_at %>">
+              <h6 class="ml-md-3"><%= time_ago_in_words(post.updated_at) %>前</h6>
+            </time>
             <h2 class="card-title ml-md-3"><%= post.place %></h2>
             <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= post.station %></h4>
             <%= link_to("詳しく見る", "/posts/#{@pref}/#{post.place}", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
           </div>
-          <div class="table-card-down col-md-7 col-12 p-md-3" style="word-wrap: break-word;">
+          <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
             <h4>施設：<%= post.facility %></h4>
             <h4 class="card-text">時間：<%= post.time %></h4>
             <h4 class="card-text">料金：<%= post.price %>円</h4>
@@ -48,16 +51,17 @@
     <div class="collapse" id="collapseExample">
       <div class="card my-3">
         <div class="row card-body">
-          <div class="example-card-up col-md-5 col-sm-12 mb-4 mb-sm-0">
-              <h2 class="card-title ml-sm-3">〇〇体育館</h2>
-              <h4 class="ml-sm-3 mb-3">最寄り：〇〇駅</h4>
-              <a href="#" class="btn btn-outline-primary ml-sm-3">詳しく見る</a>
+          <div class="example-card-up col-md-5 col-12 mb-md-0">
+              <h2 class="card-title ml-md-3">〇〇体育館</h2>
+              <h4 class="ml-md-3 mb-md-3">最寄り：〇〇駅</h4>
+              <a href="#" class="btn btn-outline-primary ml-md-3 d-md-inline-block d-none">詳しく見る</a>
           </div>
-          <div class="example-card-down col-md-7 col-sm-12" style="word-wrap: break-word;">
+          <div class="example-card-down col-md-7 col-12" style="word-wrap: break-word;">
               <h4>施設：柔道場</h4>
               <h4 class="card-text">時間：平日：19時〜21時</h4>
               <h4 class="card-text">料金：200円</h4>
               <h4 class="card-text">タグ：<span class="text-primary">#柔道場　#個人利用</span></h4>
+              <a href="#" class="btn btn-outline-primary mt-1 d-md-none d-inline-block">詳しく見る</a>
           </div>
         </div>
       </div>
