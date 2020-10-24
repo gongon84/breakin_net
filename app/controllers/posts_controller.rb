@@ -14,7 +14,12 @@ class PostsController < ApplicationController
 
   def table
     @pref = params[:pref]
-    @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
+    if params[:serch_place]
+      @post = Post.where('place LIKE ?', "%#{params[:serch_place]}%").page(params[:page]).per(5)
+    else
+      @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
+    end
+    # @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show
@@ -66,4 +71,13 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to("/posts/#{params[:pref]}")
   end
+
+  # def serch
+  #   @pref = params[:pref]
+  #   if params[:serch_place]
+  #     @post = Post.where('place LIKE ?', "%#{params[:serch_place]}%")
+  #   else
+  #     @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
+  #   end
+  # end
 end

@@ -14,6 +14,11 @@
     }
 }
 
+// tableページ
+.form-serch {
+    width: 75%;
+}
+
 // ページネーション
 ul.pagination {
     justify-content: center;
@@ -21,11 +26,16 @@ ul.pagination {
 }
 
 // 都道府県ページ
-.pref-wrap {
-    // height: 75%;
-}
+// .pref-wrap {
+//     height: 75%;
+// }
 
 // showページ
+// 作成者データ
+.creat-time h6 {
+    margin: 0;
+}
+
 .borad .img-temp {
     background-color:gray;
     height:60px;
@@ -49,6 +59,11 @@ ul.pagination {
     // tableページ
     .page-title h1 { font-size: 2rem; }
     .no-regi h1 { font-size: 1rem; }
+
+    // 検索フォーム
+    .form-serch {
+        width: 50%;
+    }
 
     .example-card-up, .table-card-up {
         h2 { font-size: 1.5rem; }

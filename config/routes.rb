@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "/posts/:pref/:place/edit" => "posts#edit"
   post "/posts/update" => "posts#update"
   post "/posts/:pref/:place/destroy" => "posts#destroy"
+  # テスト　検索
+  # post "/posts/serch" => "posts#serch"
 
   get "/comment/:pref/:place" => "user#index"
   post "/user/create" => "user#create"
