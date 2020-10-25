@@ -15,9 +15,9 @@ class PostsController < ApplicationController
   def table
     @pref = params[:pref]
     if params[:serch_place]
-      @post = Post.where('place LIKE ?', "%#{params[:serch_place]}%").page(params[:page]).per(5)
+      @post = Post.where('place LIKE ?', "%#{params[:serch_place]}%").page(params[:page]).per(5).order(updated_at: :desc)
     else
-      @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
+      @post = Post.all.page(params[:page]).per(5).order(updated_at: :desc)
     end
     # @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
   end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     @post = Post.new(pref: params[:pref], place: params[:place], station: params[:station], 
       facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag])
     if @post.save
-      redirect_to("/posts/#{@pref}")
+      redirect_to("/posts/#{@pref}", notice: "#{@post.place}を登録しました")
     else
       render("posts/new")
     end

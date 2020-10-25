@@ -3,7 +3,7 @@
     <%= link_to '戻る', "/posts/#{@pref}", class: "btn btn-outline-primary mt-md-5 mt-3" %>
 
     <div class="creat-time mt-5 ml-2">
-      <h6>作成者：テスト太郎(今後実施予定)</h6>
+      <%# <h6>作成者：テスト太郎(今後実施予定)</h6> %>
       <h6 >作成日：<%= @post.created_at.strftime('%Y/%m/%d') %></h6>
       <time datetime="<%= @post.updated_at %>">
         <h6 >更新　：<%= time_ago_in_words(@post.updated_at) %>前</h6>

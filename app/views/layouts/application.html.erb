@@ -26,12 +26,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav nav mt-2 ml-sm-5">
-            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'top' %>">
-              <%= link_to('トップページ', "/", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
-            </li>
+            <%# 新規登録 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'test' %>">
-              <%= link_to('使い方', "/test", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('ログイン', "/test", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
             </li>
+            <%# 使い方 %>
+            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'about' %>">
+              <%= link_to('使い方', "/about", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+            </li>
+            <%# 探す %>
             <li class= "nav-item <%= 'active' if controller.controller_name == 'posts' && controller.action_name == 'index' %>">
               <%= link_to('探す', "/posts/index", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
             </li>
