@@ -1,11 +1,115 @@
-<%# お問い合わせ %>
-<div style="height:100%;　background: #111;">
-  <div class="text-center main-title" style="">
-    <div clsss="container" style="position:relative; top:25%;">
-      <h3 class="display-3 mb-5" style="color:white; letter-spacing: 0.3em;">ログイン</h3>
+<%# 配列定義 %>
+<% skill = ["１歩", "２歩", "３歩", "６歩", "チェアー", "三点倒立", "CC", "マカコ", "スワイプス", "はね起き", "エアーベイビー",
+ "NY", "ワーム", "ドンキー", "トラックス", "LA", "後転倒立", "ウインド", "スワイプス", "トーマス", "タートル"] %>
+<% limit = ["ノーマル", "片手で", "頭をついて", "肘をついて", "移動しながら", "ジャンプして", "片手を腰に", "手をクロスして", 
+"足抜き", "足or手首タッチ", "バタバタ"] %>
+
+<%# javascriptへ送る %>
+<% skill_json = skill.to_json.html_safe %>
+<% limit_json = limit.to_json.html_safe %>
+
+<%# おまけ %>
+<div class="container bonus" style="background-color: #EEEEEE;">
+  <%# タイトル %>
+  <div class="text-center p-2 p-md-5 mt-5">
+    <h1>おまけ</h1>
+    <h3 class="mt-4">ルーレットを回してお題をクリアしよう！<br>新しい技が生まれるかも？</h3>
+  </div>
+
+  <%# ルーレット　%>
+  <div class="outline text-center">
+    <div class="flex">
+      <div class="roulette" id="roulette2">縛り</div>
+      <div class="roulette" id="roulette">技</div>
     </div>
+    <i class="fa fa-arrow-down fa-3x"></i>
+    <div class="flex">
+      <div class="roulette" id="roulette4">縛り</div>
+      <div class="roulette" id="roulette3">技</div>
+    </div>
+    <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
+    <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
+    <input type="button" value="スタート" id="start" onclick="start()" class="my-3 mx-2">
+    <input type="button" value="ストップ" id="stop" onclick="stop();" class="my-3 mx-2">
+
+    <%# 予告 %>
+    <h3 class="mt-5">※今後は、自分で「技」と「縛り」を追加できるようにする予定です。</h3>
   </div>
 </div>
+
+
+<%# javascript %>
+<script language="javascript" type="text/javascript">
+  var roulette;
+  var roulette2;
+  var roulette3;
+  var roulette4;
+
+  // ルーレットを開始
+  function start() {
+    // 技のルーレット
+    roulette, roulette3 = setInterval(function() {
+      // skill_json取得
+      var skillJson = $('.skill_json').val();
+      // arr_jsonをパースし配列にする
+      var skill = JSON.parse(skillJson);
+      // 要素数
+      var skill_len = skill.length - 1
+
+      // ランダムな数値を作成し、配列を決定
+      var idx = Math.floor( Math.random() * skill_len ) + 1;
+      document.getElementById("roulette").innerHTML = skill[idx];
+
+      // ２つ目の配列
+      var idx = Math.floor( Math.random() * skill_len ) + 1;
+      document.getElementById("roulette3").innerHTML = skill[idx];
+    }, 100);
+
+    // 縛りのルーレット
+    roulette2, roulette4 = setInterval(function() {
+      // limit_json取得
+      var limitJson = $('.limit_json').val();
+      // limit_jsonをパースし配列にする
+      var limit = JSON.parse(limitJson);
+      // 要素数
+      var limit_len = limit.length - 1
+
+      // ランダムな数値を作成
+      var idx = Math.floor( Math.random() * limit_len ) + 1;
+      document.getElementById("roulette2").innerHTML = limit[idx];
+
+      // ２つ目の配列
+      var idx = Math.floor( Math.random() * limit_len ) + 1;
+      document.getElementById("roulette4").innerHTML = limit[idx];
+    }, 100);
+
+    // スタートボタンを一度しか押せないようにする
+    document.getElementById("start").disabled = true
+    document.getElementById("stop").disabled = false
+  }
+ 
+  // ルーレットを停止
+  function stop() {
+    if(roulette) {
+      clearInterval(roulette);
+    }
+
+    if(roulette2) {
+      clearInterval(roulette2);
+    }
+
+    if(roulette3) {
+      clearInterval(roulette3);
+    }
+
+    if(roulette4) {
+      clearInterval(roulette4);
+    }
+
+    document.getElementById("start").disabled = false
+    document.getElementById("stop").disabled = true
+  }
+</script>
 
 
 
