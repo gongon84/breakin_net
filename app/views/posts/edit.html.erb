@@ -8,7 +8,7 @@
         </div>
     <% end %>
 
-    <%= form_tag("/posts/update") do %>
+    <%= form_tag("/posts/update", {multipart: true}) do %>
         <%# updateに渡すため 場所 非表示 %>
         <div class="form-group">
             <input class="form-control" name="place" id="place" type="hidden" value="<%= params[:place] %>" readonly="readonly">

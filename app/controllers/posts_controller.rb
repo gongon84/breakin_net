@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   def create
     @pref = params[:pref]
     @post = Post.new(pref: params[:pref], place: params[:place], station: params[:station], 
-      facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag])
+      facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag], image_name: "NoImage.jpg")
     if @post.save
       redirect_to("/posts/#{@pref}", notice: "#{@post.place}を登録しました")
     else
@@ -57,7 +57,13 @@ class PostsController < ApplicationController
     @post.price = params[:new_price]
     @post.tag = params[:new_tag]
     @post.memo = params[:new_memo]
-    @url = params[:url]
+    if params[:new_image_name]
+      @post.image_name = "#{@post.id}.jpg"
+      image = params[:new_image_name]
+      File.binwrite("public/posts_images/#{@post.image_name}", image.read)
+    else
+      @post.image_name = "NoImage.jpg"
+    end
     if @post.save
       redirect_to("/posts/#{@post.pref}/#{@post.place}")
     else
@@ -72,12 +78,31 @@ class PostsController < ApplicationController
     redirect_to("/posts/#{params[:pref]}")
   end
 
-  # def serch
-  #   @pref = params[:pref]
-  #   if params[:serch_place]
-  #     @post = Post.where('place LIKE ?', "%#{params[:serch_place]}%")
-  #   else
-  #     @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
-  #   end
-  # end
+  def editImage
+    @post = Post.find_by(pref: params[:pref], place: params[:place])
+  end
+
+  def updateImage
+    @post = Post.find_by(pref: params[:pref], place: params[:place])
+    if params[:new_image_name]
+      @post.image_name = "#{@post.id}.jpg"
+      image = params[:new_image_name]
+      File.binwrite("public/posts_images/#{@post.image_name}", image.read)
+    end
+    if @post.save
+      redirect_to("/posts/#{@post.pref}/#{@post.place}")
+    else
+      render("/posts/edit")
+    end
+  end
+
+  def defaultImage
+    @post = Post.find_by(pref: params[:pref], place: params[:place])
+    @post.image_name = "NoImage.jpg"
+    if @post.save
+      redirect_to("/posts/#{@post.pref}/#{@post.place}")
+    else
+      render("/posts/edit")
+    end
+  end
 end

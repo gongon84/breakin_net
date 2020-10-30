@@ -46,16 +46,34 @@
             <h4 class="ml-md-3 card-text"><span class="text-secondary">タグ　：<span><span class="text-primary"><%= @post.tag %></span></h4>
         </div>
       </div>
+      <%# 画像 %>
+      <div class="row card-body border-bottom">
+        <div class="image_card col-md-11 ml-md-3">
+          <h3>＜画像＞</h3>
+          <img src="<%= "/posts_images/#{@post.image_name}" %>" height="400px">
+          <br>
+          <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-none d-md-inline-block btn btn-light") %>
+          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-none d-md-inline-block btn btn-light ml-2", 
+          method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
+          <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-inline-block d-md-none btn btn-sm btn-light") %>
+          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-inline-block d-md-none btn-sm btn btn-light ml-2", 
+          method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
+        </div>
+      </div>
+      <%# メモ %>
       <div class="row card-body">
         <div class="memo-card col-md-11 ml-md-3">
-          <h3>メモ</h3>
+          <h3>＜メモ＞</h3>
           <% if @post.memo %>
             <h4><%= safe_join(@post.memo.split("\n"), tag(:br)) %></h4>
           <% else %>
             <h4><%= @post.memo %></h4>
+            <p></p>
+            <p></p>
           <% end %>
         </div>
       </div>
+      <%# 編集・削除ボタン %>
       <div class="row card-body pt-0">
         <div class="col-12 col-md-12 d-flex justify-content-end">
           <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
