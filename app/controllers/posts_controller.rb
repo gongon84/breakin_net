@@ -57,13 +57,6 @@ class PostsController < ApplicationController
     @post.price = params[:new_price]
     @post.tag = params[:new_tag]
     @post.memo = params[:new_memo]
-    if params[:new_image_name]
-      @post.image_name = "#{@post.id}.jpg"
-      image = params[:new_image_name]
-      File.binwrite("public/posts_images/#{@post.image_name}", image.read)
-    else
-      @post.image_name = "NoImage.jpg"
-    end
     if @post.save
       redirect_to("/posts/#{@post.pref}/#{@post.place}")
     else
@@ -87,7 +80,7 @@ class PostsController < ApplicationController
     if params[:new_image_name]
       @post.image_name = "#{@post.id}.jpg"
       image = params[:new_image_name]
-      File.binwrite("public/posts_images/#{@post.image_name}", image.read)
+      File.binwrite("app/assets/images/posts_images/#{@post.image_name}", image.read)
     end
     if @post.save
       redirect_to("/posts/#{@post.pref}/#{@post.place}")
