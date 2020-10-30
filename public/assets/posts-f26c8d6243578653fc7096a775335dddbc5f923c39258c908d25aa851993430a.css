@@ -1,0 +1,115 @@
+/* line 2, app/assets/stylesheets/posts.scss */
+.full-page {
+  height: 100%;
+  background-color: #EEEEEE;
+}
+
+/* line 6, app/assets/stylesheets/posts.scss */
+.full-page header {
+  background-color: #0E3D88;
+}
+
+/* line 10, app/assets/stylesheets/posts.scss */
+.full-page header .navbar-brand {
+  font-size: 2.3rem;
+  color: white;
+}
+
+/* line 18, app/assets/stylesheets/posts.scss */
+.form-serch {
+  width: 75%;
+}
+
+/* line 23, app/assets/stylesheets/posts.scss */
+ul.pagination {
+  justify-content: center;
+  margin: 100px 0;
+}
+
+/* line 35, app/assets/stylesheets/posts.scss */
+.creat-time h6 {
+  margin: 0;
+}
+
+/* line 39, app/assets/stylesheets/posts.scss */
+.borad .img-temp {
+  background-color: gray;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+/* line 47, app/assets/stylesheets/posts.scss */
+.image_card img {
+  max-width: 90%;
+}
+
+@media (max-width: 600px) {
+  /* line 54, app/assets/stylesheets/posts.scss */
+  .full-page {
+    height: 100%;
+  }
+  /* line 58, app/assets/stylesheets/posts.scss */
+  .full-page header .navbar-brand {
+    font-size: 1.5rem;
+  }
+  /* line 61, app/assets/stylesheets/posts.scss */
+  .full-page footer p {
+    text-align: center;
+  }
+  /* line 65, app/assets/stylesheets/posts.scss */
+  .page-title h1 {
+    font-size: 2rem;
+  }
+  /* line 66, app/assets/stylesheets/posts.scss */
+  .no-regi h1 {
+    font-size: 1rem;
+  }
+  /* line 69, app/assets/stylesheets/posts.scss */
+  .form-serch {
+    width: 50%;
+  }
+  /* line 74, app/assets/stylesheets/posts.scss */
+  .example-card-up h2, .table-card-up h2 {
+    font-size: 1.5rem;
+  }
+  /* line 75, app/assets/stylesheets/posts.scss */
+  .example-card-up h4, .table-card-up h4 {
+    font-size: 1rem;
+  }
+  /* line 79, app/assets/stylesheets/posts.scss */
+  .example-card-down h4, .table-card-down h4 {
+    font-size: 1.0rem;
+  }
+  /* line 85, app/assets/stylesheets/posts.scss */
+  .show-card-up h4, .show-card-down h4 {
+    font-size: 1.0rem;
+  }
+  /* line 89, app/assets/stylesheets/posts.scss */
+  .borad .img-temp {
+    background-color: gray;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+  /* line 97, app/assets/stylesheets/posts.scss */
+  .memo-card h3 {
+    font-size: 1.3rem;
+  }
+  /* line 98, app/assets/stylesheets/posts.scss */
+  .memo-card h4 {
+    font-size: 1rem;
+  }
+  /* line 102, app/assets/stylesheets/posts.scss */
+  .comment h6 {
+    font-size: 0.8rem;
+  }
+  /* line 103, app/assets/stylesheets/posts.scss */
+  .comment h4 {
+    font-size: 1rem;
+  }
+  /* line 107, app/assets/stylesheets/posts.scss */
+  .image_card img {
+    height: 200px;
+  }
+}
