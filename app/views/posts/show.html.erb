@@ -50,7 +50,7 @@
       <div class="row card-body border-bottom">
         <div class="image_card col-md-11 ml-md-3">
           <h3>＜画像＞</h3>
-          <%= image_tag "/assets/posts_images/#{@post.image_name}", height: "400px" %>
+          <%= image_tag "/assets/posts_images/#{@post.image_name}", height: "400px", alt: "バグ" %>
           <br>
           <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-none d-md-inline-block btn btn-light border") %>
           <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-none d-md-inline-block btn btn-light border ml-2", 
