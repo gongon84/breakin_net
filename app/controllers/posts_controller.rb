@@ -80,7 +80,7 @@ class PostsController < ApplicationController
     if params[:new_image_name]
       @post.image_name = "#{@post.id}.jpg"
       image = params[:new_image_name]
-      File.binwrite("app/assets/images/posts_images/#{@post.image_name}", image.read)
+      File.binwrite("app/assets/images/#{@post.image_name}", image.read)
     end
     if @post.save
       redirect_to("/posts/#{@post.pref}/#{@post.place}")
