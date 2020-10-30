@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @pref = params[:pref]
     @place = params[:place]
     @post = Post.find_by(pref: @pref, place: @place)
-    @comments = User.all.order(created_at: :desc)
+    @comments = Comment.all.order(created_at: :desc)
   end
 
   def new
@@ -72,7 +72,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @comments = User.where(pref: params[:pref], place: params[:place])
+    @comments = Comment.where(pref: params[:pref], place: params[:place])
     @post = Post.find_by(pref: params[:pref], place: params[:place])
     @post.destroy
     redirect_to("/posts/#{params[:pref]}")
