@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/index'
   get '/' => "home#top"
   get "/about" => "home#about"
   get "/test" => "home#test"
