@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'users/index'
   get '/' => "home#top"
   get "/about" => "home#about"
   get "/test" => "home#test"
 
+  # ポスト投稿
   get '/posts/index' => "posts#index"
   get '/posts/:pref' => "posts#table"
   get "/posts/:pref/new" => "posts#new"
@@ -20,6 +20,17 @@ Rails.application.routes.draw do
   get "/comment/:pref/:place" => "comments#index"
   post "/comments/create" => "comments#create"
   post "/comments/:pref/:place/:id/destroy" => "comments#destroy"
+
+  # ユーザー
+  get 'users/index' => "users#index"
+  get 'users/signup' => "users#new"
+  get "users/login" => "users#login_form"
+  post "users/login" => "users#login"
+  post "users/logout" => "users#logout"
+  get "users/:id" => "users#show"
+  post 'users/create' => "users#create"
+  get "users/:id/edit" => "users#edit"
+  post "users/:id/update" => "users#update"
 
   root "home#top"
 end

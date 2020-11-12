@@ -38,7 +38,6 @@
 
   <%# 投稿一覧 %>
   <%# データがあるとき %>
-
   <% if @post.where(pref: @pref).size > 0 %>
     <% @post.where(pref: @pref).each do |post| %>
       <div class="card my-3">
