@@ -7,7 +7,11 @@ class CommentsController < ApplicationController
   def create
     @pref = params[:pref]
     @place = params[:place]
-    @post_comment = Comment.new(post_id: params[:post_id], pref: @pref, place: @place, name: params[:name], comment: params[:comment])
+    if @current_user
+      @post_comment = Comment.new(post_id: params[:post_id], pref: @pref, place: @place, name: params[:name], comment: params[:comment])
+    else
+      @post_comment = Comment.new(post_id: params[:post_id], pref: @pref, place: @place, name: params[:name]+"(ゲスト)", comment: params[:comment])
+    end
     @post_comment.save
     redirect_to("/posts/#{@pref}/#{@place}")
   end

@@ -122,9 +122,15 @@
                   <input class="form-control" name="place" id="place" type="hidden" value="<%= @place %>" readonly="readonly">
                 </div>
                 <%# ニックネーム %>
-                <div class="form-group mt-0 w-50">
-                  <input class="form-control" name="name"  id="name" type="text" placeholder="ニックネーム">
-                </div>
+                <% if @current_user %>
+                  <div class="form-group mt-0 w-50">
+                    <input class="form-control" name="name"  id="name" type="text" value="<%= @user.name %>" readonly="readonly">
+                  </div>
+                <% else %>
+                  <div class="form-group mt-0 w-50">
+                    <input class="form-control" name="name"  id="name" type="text" placeholder="ニックネーム(ゲスト)">
+                  </div>
+                <% end %>
                 <%# コメント %>
                 <div class="d-flex">
                   <div class="form-group mt-0 w-75">
@@ -144,12 +150,12 @@
         <% if @comments.where(pref: @pref, place: @place).size > 0 %>
           <% @comments.where(pref: @pref, place: @place).each do |comment| %>
             <div class="row pl-sm-3 mt-1 border-top">
-              <div class="col-2 col-md-1 px-3 pt-3 pb-1">
+              <%# <div class="col-2 col-md-1 px-3 pt-3 pb-1">
                 <h4 class="img-temp"></h4>
-              </div>
-              <div class="comment col-6 col-xs-7 col-md-9 px-md-4 px-1 pt-3 pb-1" style="word-wrap: break-word;">
+              </div> %>
+              <div class="comment col-8 col-xs-9 col-md-10 px-md-4 px-1 pt-3 pb-1" style="word-wrap: break-word;">
                 <div class="d-flex">
-                  <h6 class="mb-1 mb-md-2"><%= comment.name%><span class="text-black-50">：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
+                  <h6 class="mb-1 mb-md-2"><%= comment.id %>.<%= comment.name %><span class="text-black-50">：<br class="d-block d-md-none"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
                 </div>
                 <h4><%= safe_join(comment.comment.split("\n"), tag(:br)) %></h4>
               </div>

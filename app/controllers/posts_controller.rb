@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenicate_user, {only: [:new, :create, :edit, :update, :destroy, ]}
+
   def index
     @areas = [
       ["北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県"],
