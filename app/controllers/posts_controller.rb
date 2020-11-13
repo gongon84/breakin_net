@@ -26,18 +26,20 @@ class PostsController < ApplicationController
     @pref = params[:pref]
     @place = params[:place]
     @post = Post.find_by(pref: @pref, place: @place)
+    @user = User.find_by(id: @post.user_id)
     @comments = Comment.all.order(created_at: :desc)
   end
 
   def new
     @pref = params[:pref]
+    @user = User.find_by(id: session[:user_id])
   end
 
   def create
     @pref = params[:pref]
-    @post = Post.new(pref: params[:pref], place: params[:place], station: params[:station], 
+    @post = Post.new(user_id: params[:user_id], pref: params[:pref], place: params[:place], station: params[:station], 
       facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag], image_name: "NoImage.jpg")
-    if @post.save
+    if @post.save!
       redirect_to("/posts/#{@pref}", notice: "#{@post.place}を登録しました")
     else
       render("posts/new")

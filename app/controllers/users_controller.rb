@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @post = Post.where(user_id: @user.id)
   end
 
   def table
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(name: params[:name], email: params[:email], password: params[:password], profile: "よろしくお願いします")
     if @user.save
       session[:user_id] = @user.id
-      redirect_to("/users/index", notice: "ユーザー登録が完了しました")
+      redirect_to("/users/#{@user.id}", notice: "ユーザー登録が完了しました")
     else
       render("users/new")
     end

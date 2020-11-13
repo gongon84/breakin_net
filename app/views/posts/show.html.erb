@@ -3,7 +3,7 @@
     <%= link_to '戻る', "/posts/#{@pref}", class: "btn btn-outline-primary mt-md-5 mt-3" %>
 
     <div class="creat-time mt-5 ml-2">
-      <%# <h6>作成者：テスト太郎(今後実施予定)</h6> %>
+      <h6>作成者：<%= link_to("#{@user.name}", "/users/#{@user.id}") %></h6>
       <h6 >作成日：<%= @post.created_at.strftime('%Y/%m/%d') %></h6>
       <time datetime="<%= @post.updated_at %>">
         <h6 >更新　：<%= time_ago_in_words(@post.updated_at) %>前</h6>
@@ -52,12 +52,14 @@
           <h3>＜画像＞</h3>
           <%= image_tag "/posts_images/#{@post.image_name}", height: "400px", alt: "バグ" %>
           <br>
-          <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-none d-md-inline-block btn btn-light border") %>
-          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-none d-md-inline-block btn btn-light border ml-2", 
-          method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
-          <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-inline-block d-md-none btn btn-sm btn-light border") %>
-          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-inline-block d-md-none btn-sm btn btn-light border ml-2", 
-          method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
+          <% if @current_user && @user.id == @current_user.id %>
+            <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-none d-md-inline-block btn btn-light border") %>
+            <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-none d-md-inline-block btn btn-light border ml-2", 
+            method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
+            <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-inline-block d-md-none btn btn-sm btn-light border") %>
+            <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-inline-block d-md-none btn-sm btn btn-light border ml-2", 
+            method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
+          <% end %>
         </div>
       </div>
       <%# メモ %>
@@ -74,16 +76,18 @@
         </div>
       </div>
       <%# 編集・削除ボタン %>
-      <div class="row card-body pt-0">
-        <div class="col-12 col-md-12 d-flex justify-content-end">
-          <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
-          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-none d-md-inline-block btn btn-outline-primary ml-2", 
-          method: "post", data: {confirm: '【確認】この施設を削除してよろしいですか？'}) %>
-          <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-inline-block d-md-none btn btn-sm btn-outline-primary") %>
-          <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-inline-block d-md-none btn-sm btn btn-outline-primary ml-2", 
-          method: "post", data: {confirm: '【確認】この施設を削除してよろしいですか？'}) %>
+      <% if @current_user && @user.id == @current_user.id %>
+        <div class="row card-body pt-0">
+          <div class="col-12 col-md-12 d-flex justify-content-end">
+            <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
+            <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-none d-md-inline-block btn btn-outline-primary ml-2", 
+            method: "post", data: {confirm: '【確認】この施設を削除してよろしいですか？'}) %>
+            <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-inline-block d-md-none btn btn-sm btn-outline-primary") %>
+            <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/destroy", class: "d-inline-block d-md-none btn-sm btn btn-outline-primary ml-2", 
+            method: "post", data: {confirm: '【確認】この施設を削除してよろしいですか？'}) %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <%# 掲示板 %>
