@@ -1,6 +1,14 @@
 <%# ログイン %>
 <div class="container">
 
+    <%# フラッシュ　ログインが必要 %>
+    <% if flash[:notice] %>
+        <div class="alert alert-success m-0" role="alert">
+        <h3><%= flash[:notice] %></h3>
+        </div>
+    <% end %>
+
+    <%# エラーメッセージ %>
     <% if @error_message %>
         <div class="form-error">
             <%= @error_message %>

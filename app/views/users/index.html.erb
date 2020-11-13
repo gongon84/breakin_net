@@ -8,12 +8,15 @@
         </div>
     <% end %>
 
-    <h3 class="my-5 text-center">ユーザー一覧</h3>
+    <h3 class="my-5 text-center">アカウントをご利用の方へ</h3>
     <div class="row text-center">
         <div class="col-md-12 my-3">
-            <% @users.each do |user| %>
-                <h4><%= link_to("#{user.name}", "/users/#{user.id}", style: "color:black;") %></h4>
-            <% end %>
+            <h4>
+                アカウントを登録すると以下の機能が使えます<br><br>
+                ・レッスン情報や施設を登録することができる<br>
+                ・自分だけのmovemakerを作ることができる<br>
+                ・アカウントを利用しているもの同士でつながることができる。<br>
+            </h4>
         </div>
         <div class="col-md-12">
             <%= link_to('新規登録はこちら', "/users/signup") %>

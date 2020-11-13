@@ -31,10 +31,9 @@
               <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'show' %>">
                 <%= link_to("#{@current_user.name}", "/users/#{@current_user.id}", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
               </li>
-              <%# ログアウト %>
-              <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'logout' %>">
-                <%= link_to('ログアウト', "/users/logout", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;",
-                method: "post") %>
+              <%# ユーザー検索 %>
+              <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'table' %>">
+                <%= link_to('ユーザー検索', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
               </li>
             <% else %>
               <%# ログイン %>

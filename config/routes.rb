@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   # ユーザー
   get 'users/index' => "users#index"
   get 'users/signup' => "users#new"
+  get "users/table" => "users#table"
   get "users/login" => "users#login_form"
   post "users/login" => "users#login"
   post "users/logout" => "users#logout"
