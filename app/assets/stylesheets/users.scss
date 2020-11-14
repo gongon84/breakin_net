@@ -1,0 +1,22 @@
+
+// スマホデバイス（タブレット, 600px 未満）
+@media (max-width: 600px) {
+
+    // indexページ
+    .account-home {
+        & h4 {
+            font-size: 1rem;
+        }
+    }
+
+    // tableページ
+    .user-table {
+        & h4 {
+            font-size: 1rem; 
+        }
+
+        & h6 {
+            font-size: 0.8rem; 
+        }
+    }
+}

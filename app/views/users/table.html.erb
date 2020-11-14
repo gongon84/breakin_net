@@ -26,7 +26,7 @@
                 <h4><%= link_to("#{user.name}", "/users/#{user.id}", style: "color:black;") %></h4>
             </div>
             <div class="col-md-9">
-                <h5><%= safe_join(user.profile.split("\n"), tag(:br)) %></h5>
+                <h6><%= safe_join(user.profile.split("\n"), tag(:br)) %></h6>
             </div>
         </div>
         <% end %>

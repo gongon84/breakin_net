@@ -8,18 +8,15 @@
     <% end %>
 
     <%# 戻るボタン %>
-    <%= link_to 'ユーザー検索', "/users/table", class: "btn btn-outline-primary my-3" %>
+    <%= link_to 'ユーザー検索へ', "/users/table", class: "btn btn-outline-primary my-3" %>
 
     <%# ユーザー情報 %>
     <div class="user mt-5">
         <h2><%= @user.name %></h2>
-        <div class="w-50 my-3">
-            <h5><%= safe_join(@user.profile.split("\n"), tag(:br)) %></h5>
-        </div>
-        <h5><%= link_to("#{@user.url}", "#{@user.url}", target: :_blank) %></h5>
-        <br>
-        <h5>お気に入りの場所<i class="fas fa-map-marker-alt"></i></h5>
-        <h5>ムーブメイク<i class="fas fa-hammer"></i></h5>
+        <h6 class="my-3"><%= safe_join(@user.profile.split("\n"), tag(:br)) %></h6>
+        <h6><i class="fas fa-link"></i>&nbsp;<%= link_to("#{@user.url}", "#{@user.url}", target: :_blank) %></h6>
+        <h6><i class="fas fa-map-marker-alt"></i>&nbsp;お気に入りの場所</h6>
+        <h6><i class="fas fa-hammer"></i>&nbsp;ムーブメイク</h6>
     </div>
 
 
@@ -32,27 +29,29 @@
     <% end %>
 
     <%# 投稿 %>
-    <h3 class="mt-5 ml-3 border border-dark text-center" style="width:100px; border-radius:30px;">投稿</h3>
-    <% @post.each do |post| %>
-      <div class="card my-3">
-        <div class="row card-body border-bottom">
-          <div class="table-card-up col-md-5 col-12 px-md-3">
-            <time datetime="<%= post.updated_at %>">
-              <h6 class="ml-md-3"><%= time_ago_in_words(post.updated_at) %>前</h6>
-            </time>
-            <h2 class="card-title ml-md-3"><%= post.place %></h2>
-            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= post.station %></h4>
-            <%= link_to("詳しく見る", "/posts/#{post.pref}/#{post.place}", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
-          </div>
-          <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
-            <h4>施設：<%= post.facility %></h4>
-            <h4 class="card-text">時間：<%= post.time %></h4>
-            <h4 class="card-text">料金：<%= post.price %>円</h4>
-            <h4 class="card-text">タグ：<span class="text-primary"><%= post.tag %></span></h4>
-            <%= link_to("詳しく見る", "/posts/#{post.pref}/#{post.place}", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
+    <div class="user-post mt-5 py-5" style="border-top: 2px solid grey">
+      <h3 class="ml-3 border border-dark text-center" style="width:100px; border-radius:30px;">投稿</h3>
+      <% @post.each do |post| %>
+        <div class="card my-3">
+          <div class="row card-body border-bottom">
+            <div class="table-card-up col-md-5 col-12 px-md-3">
+              <time datetime="<%= post.updated_at %>">
+                <h6 class="ml-md-3"><%= time_ago_in_words(post.updated_at) %>前</h6>
+              </time>
+              <h2 class="card-title ml-md-3"><%= post.place %></h2>
+              <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= post.station %></h4>
+              <%= link_to("詳しく見る", "/posts/#{post.pref}/#{post.place}", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+            </div>
+            <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+              <h4>施設：<%= post.facility %></h4>
+              <h4 class="card-text">時間：<%= post.time %></h4>
+              <h4 class="card-text">料金：<%= post.price %>円</h4>
+              <h4 class="card-text">タグ：<span class="text-primary"><%= post.tag %></span></h4>
+              <%= link_to("詳しく見る", "/posts/#{post.pref}/#{post.place}", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
 </div>
