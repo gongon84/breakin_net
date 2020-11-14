@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   end
 
   def table
-    @users = User.all
+    if params[:serch_user]
+      @users = User.where('name LIKE ?', "%#{params[:serch_user]}%").page(params[:page]).per(5).order(updated_at: :desc)
+    else
+      @users = User.all.page(params[:page]).per(20).order(updated_at: :desc)
+    end
   end
 
   def new

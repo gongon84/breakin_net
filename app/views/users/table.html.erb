@@ -8,12 +8,27 @@
         </div>
     <% end %>
 
-    <h3 class="my-5 text-center">ユーザー一覧</h3>
-    <div class="row text-center">
-        <div class="col-md-12 my-3">
-            <% @users.each do |user| %>
-                <h4><%= link_to("#{user.name}", "/users/#{user.id}", style: "color:black;") %></h4>
-            <% end %>
+    <%# 検索 %>
+    <%= form_tag("/users/table", method: "get") do %>
+      <div class="d-flex justify-content-end mt-5 mb-sm-0">
+        <div class="form-serch form-inline-block m-0 w-25">
+          <input class="form-control" name="serch_user" id="serch_user" type="text" value="<%= params[:serch_user] %>" placeholder="検索">
         </div>
+        <button type="submit"　value="検索" class="btn btn-raised btn-outline-primary"><i class="fas fa-search"></i></button>
+      </div>
+    <% end %>
+
+    <h3 class="my-5 text-center">ユーザー 一覧</h3>
+    <div class="user-table" style="background-color:#F7F7F7;">
+        <% @users.each do |user| %>
+        <div class="row p-3 m-0 border-bottom">
+            <div class="col-md-3">
+                <h4><%= link_to("#{user.name}", "/users/#{user.id}", style: "color:black;") %></h4>
+            </div>
+            <div class="col-md-9">
+                <h5><%= safe_join(user.profile.split("\n"), tag(:br)) %></h5>
+            </div>
+        </div>
+        <% end %>
     </div>
 </div>
