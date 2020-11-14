@@ -1,3 +1,25 @@
+// showページ
+.user-post {
+
+    // navバー
+    // 通常時
+    & .nav-item {
+        color: grey;
+        background-color: white;
+    }
+
+    // hover
+    & .nav-item:hover {
+        color: #39A2F2;
+    }
+
+    // activeの部分
+    & .nav-tabs .nav-link.active, .nav-tabs .show > .nav-link {
+        color: #39A2F2;
+        border-bottom: 2px solid #39A2F2;
+    }
+}
+
 
 // スマホデバイス（タブレット, 600px 未満）
 @media (max-width: 600px) {
@@ -6,6 +28,10 @@
     .account-home {
         & h4 {
             font-size: 0.8rem;
+            color: red;
+        }
+
+        & h3 {
             color: red;
         }
     }
