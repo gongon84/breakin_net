@@ -35,7 +35,23 @@
     <%# 予告 %>
     <h3 class="mt-5">※今後は、自分で「技」と「縛り」を追加できるようにする予定です。</h3>
   </div>
+
+  <%# テスト %>
+  <div class="card mt-5">
+    <div class="row card-body">
+      <div class="table-card-up col-md-5 col-12 px-md-3">
+        <h2 class="card-title ml-md-3">お試しパック</h2>
+        <h4 class="ml-md-3 my-md-3"><span class="text-secondary">管理者(いいね数)</span></h4>
+        <%= link_to("挑戦する", "/test", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+      </div>
+      <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+        <%= link_to("挑戦する", "/test", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
+      </div>
+    </div>
+  </div>
+
 </div>
+
 
 
 <%# javascript %>
