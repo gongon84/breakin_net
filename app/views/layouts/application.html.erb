@@ -43,7 +43,11 @@
             </li>
             <%# 使い方 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'about' %>">
-              <%= link_to('使い方', "/about", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('使い方', "/wait", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+            </li>
+            <%# レッスンを見つける %>
+            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'lesson' %>">
+              <%= link_to('レッスンを見つける', "/wait", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
             </li>
             <%# 場所を見つける %>
             <li class= "nav-item <%= 'active' if controller.controller_name == 'posts' && controller.action_name == 'index' %>">
@@ -52,10 +56,6 @@
             <%# ムーブを作る %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'test' %>">
               <%= link_to('ムーブを作る', "/test", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
-            </li>
-            <%# レッスンを見つける %>
-            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'lesson' %>">
-              <%= link_to('レッスンを見つける', "/test", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
             </li>
           </ul>
         </div>

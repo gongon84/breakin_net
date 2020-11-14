@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/' => "home#top"
   get "/about" => "home#about"
   get "/test" => "home#test"
+  get "/wait" => "home#wait"
 
   # ポスト投稿
   get '/posts/index' => "posts#index"
