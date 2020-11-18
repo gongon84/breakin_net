@@ -11,6 +11,10 @@
             font-size: 2.3rem;
             color: white;
         }
+
+        & .collapse ul li {
+            font-size: 1.2rem;
+        }
     }
 }
 
@@ -56,6 +60,10 @@ ul.pagination {
 
         // ヘッダー
         & header  .navbar-brand { font-size: 1.5rem; }
+
+        & header .collapse ul li {
+            font-size: 1rem;
+        }
 
         // フッター
         & footer p { text-align: center; }

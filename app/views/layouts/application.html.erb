@@ -25,37 +25,37 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav nav mt-2 ml-sm-5">
+          <ul class="navbar-nav nav mt-md-2 ml-sm-5">
             <% if @current_user %>
               <%# アカウント %>
               <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'show' %>">
-                <%= link_to("#{@current_user.name}", "/users/#{@current_user.id}", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+                <%= link_to("#{@current_user.name}", "/users/#{@current_user.id}", class: "nav-link font-italic ml-sm-3 ml-1") %>
               </li>
             <% else %>
               <%# ログイン %>
               <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'index' %>">
-                <%= link_to('アカウント', "/users/index", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+                <%= link_to('アカウント', "/users/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
               </li>
             <% end %>
             <%# ユーザー 一覧 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'table' %>">
-              <%= link_to('ユーザー一覧', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('ユーザー一覧', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# 使い方 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'about' %>">
-              <%= link_to('使い方', "/wait", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('使い方', "/wait", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# レッスンを見つける %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'lesson' %>">
-              <%= link_to('レッスンを見つける', "/wait", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('レッスンを見つける', "/wait", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# 場所を見つける %>
             <li class= "nav-item <%= 'active' if controller.controller_name == 'posts' && controller.action_name == 'index' %>">
-              <%= link_to('場所を見つける', "/posts/index", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('場所を見つける', "/posts/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# ムーブを作る %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'test' %>">
-              <%= link_to('ムーブを作る', "/test", class: "nav-link font-italic ml-sm-3 ml-1", style: "font-size:14pt;") %>
+              <%= link_to('ムーブを作る', "/test", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
           </ul>
         </div>
