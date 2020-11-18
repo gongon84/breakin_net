@@ -8,7 +8,7 @@
     <% end %>
 
     <%# 戻るボタン %>
-    <%= link_to 'ユーザー検索へ', "/users/table", class: "btn btn-outline-primary my-3" %>
+    <%= link_to 'ユーザー一覧へ', "/users/table", class: "btn btn-outline-primary my-3" %>
 
     <%# ユーザー情報 %>
     <div class="user mt-5">
@@ -79,13 +79,30 @@
         </div>
         <%# navコンテンツ　ムーブ %>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <% if @user.name == "管理者" %>
           <div class="card">
-              <div class="row card-body">
-                <div class="table-card-up col-12 px-md-3">
-                  <h4>まだ投稿がありません</h4>
-                </div>
+            <div class="row card-body">
+              <%# テーブル %>
+              <div class="table-card-up col-md-5 col-12 px-md-3">
+                <h2 class="card-title ml-md-3">お試しパック</h2>
+                <h4 class="ml-md-3 my-md-3"><span class="text-secondary">管理者(いいね数)</span></h4>
+                <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+              </div>
+              <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+                <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
               </div>
             </div>
+          </div>
+        <%# ムーブがない場合 %>
+        <% else %>
+          <div class="card">
+            <div class="row card-body">
+              <div class="table-card-up col-12 px-md-3">
+                <h4>まだ投稿がありません</h4>
+              </div>
+            </div>
+          </div>
+        <% end %>  
         </div>
         <%# navコンテンツ　いいね %>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
