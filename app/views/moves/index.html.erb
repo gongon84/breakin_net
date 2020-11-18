@@ -1,0 +1,22 @@
+<div class="container bonus">
+
+    <%# タイトル %>
+    <div class="text-center p-2 p-md-5 mt-5">
+        <h1>Move Maker</h1>
+        <h3 class="mt-4">ルーレットを回してお題をクリアしよう！<br>新しい技が生まれるかも？</h3>
+    </div>
+
+    <%# テーブル %>
+    <div class="card mt-5">
+        <div class="row card-body">
+        <div class="table-card-up col-md-5 col-12 px-md-3">
+            <h2 class="card-title ml-md-3">お試しパック</h2>
+            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">管理者(いいね数)</span></h4>
+            <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+        </div>
+        <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+            <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
+        </div>
+        </div>
+    </div>
+</div>

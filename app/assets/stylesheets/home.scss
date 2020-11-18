@@ -10,23 +10,6 @@
   & h4 { margin-bottom: 5rem; }
 }
 
-// おまけページ
-.bonus {
-  height: 1000px;
-  h1 { 
-    font-size: 4rem;
-  }
-}
-// ルーレット
-.roulette {
-  display: inline-block;
-  border:1px solid #000000;
-  font-size: 2.5rem;
-  width: 40%;
-  margin: 40px 0;
-}
-
-
 
 // スマホデバイス（タブレット, 480px 未満）
 @media (max-width: 600px) {
@@ -46,18 +29,6 @@
       font-size: 0.7em;
       margin-bottom: 5rem;
     }
-  }
-
-  // おまけページ
-  .bonus {
-    height: 600px;
-    h1 { font-size: 2rem;}
-    h3 { font-size: 1rem;}
-  }
-  .roulette {
-    font-size: 1rem;
-    width: 40%;
-    margin: 20px 0;
   }
 }
 

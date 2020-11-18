@@ -54,8 +54,8 @@
               <%= link_to('場所を見つける', "/posts/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# ムーブを作る %>
-            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'test' %>">
-              <%= link_to('ムーブを作る', "/test", class: "nav-link font-italic ml-sm-3 ml-1") %>
+            <li class="nav-item <%= 'active' if controller.controller_name == 'moves' && controller.action_name == 'index' %>">
+              <%= link_to('ムーブを作る', "/moves/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
           </ul>
         </div>

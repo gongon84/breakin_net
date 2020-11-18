@@ -34,5 +34,9 @@ Rails.application.routes.draw do
   get "users/:id/edit" => "users#edit"
   post "users/:id/update" => "users#update"
 
+  # ムーブ
+  get 'moves/index' => "moves#index"
+  get "moves/show" => "moves#show"
+
   root "home#top"
 end
