@@ -1,131 +1,57 @@
-<%# 配列定義 %>
-<% skill = ["１歩", "２歩", "３歩", "６歩", "チェアー", "三点倒立", "CC", "マカコ", "スワイプス", "はね起き", "エアーベイビー",
- "NY", "ワーム", "ドンキー", "トラックス", "LA", "後転倒立", "ウインド", "スワイプス", "トーマス", "タートル"] %>
-<% limit = ["ノーマル", "片手で", "頭をついて", "肘をついて", "移動しながら", "ジャンプして", "片手を腰に", "手をクロスして", 
-"足抜き", "足or手首タッチ", "バタバタ"] %>
+<h2>gmap</h2>
 
-<%# javascriptへ送る %>
-<% skill_json = skill.to_json.html_safe %>
-<% limit_json = limit.to_json.html_safe %>
+<%# 検索フォーム %>
+<input id="address" type="textbox" value="東京駅">
+<input type="button" value="Encode" onclick="codeAddress()">
 
-<%# おまけ %>
-<div class="container bonus" style="background-color: #EEEEEE;">
-  <%# タイトル %>
-  <div class="text-center p-2 p-md-5 mt-5">
-    <h1>Move Maker</h1>
-    <h3 class="mt-4">ルーレットを回してお題をクリアしよう！<br>新しい技が生まれるかも？</h3>
-  </div>
+<div id='map'></div>
 
-  <%# ルーレット　%>
-  <div class="outline text-center">
-    <div class="flex">
-      <div class="roulette" id="roulette2">縛り</div>
-      <div class="roulette" id="roulette">技</div>
-    </div>
-    <i class="fa fa-arrow-down fa-3x"></i>
-    <div class="flex">
-      <div class="roulette" id="roulette4">縛り</div>
-      <div class="roulette" id="roulette3">技</div>
-    </div>
-    <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
-    <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
-    <input type="button" value="スタート" id="start" onclick="start()" class="my-3 mx-2">
-    <input type="button" value="ストップ" id="stop" onclick="stop();" class="my-3 mx-2">
+<%# マップの大きさ %>
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
 
-    <%# 予告 %>
-    <h3 class="mt-5">※今後は、自分で「技」と「縛り」を追加できるようにする予定です。</h3>
-  </div>
+<script>
+let map
 
-  <%# テスト %>
-  <div class="card mt-5">
-    <div class="row card-body">
-      <div class="table-card-up col-md-5 col-12 px-md-3">
-        <h2 class="card-title ml-md-3">お試しパック</h2>
-        <h4 class="ml-md-3 my-md-3"><span class="text-secondary">管理者(いいね数)</span></h4>
-        <%= link_to("挑戦する", "/test", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
-      </div>
-      <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
-        <%= link_to("挑戦する", "/test", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
-      </div>
-    </div>
-  </div>
+function initMap(){
+  geocoder = new google.maps.Geocoder()
 
-</div>
+  map = new google.maps.Map(document.getElementById('map'), {
+    // 初期位置 latが緯度, lngが経度
+    center: {lat: 35.6809, lng: 139.7673},
+    zoom: 12,
+  });
 
+  // ピンの位置
+  marker = new google.maps.Marker({
+    position:  {lat: 35.6809, lng: 139.7673},
+    map: map
+  });
+}
 
+// 検索
+let geocoder
 
-<%# javascript %>
-<script language="javascript" type="text/javascript">
-  var roulette;
-  var roulette2;
-  var roulette3;
-  var roulette4;
+// 検索フォームが押されたとき
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
 
-  // ルーレットを開始
-  function start() {
-    // 技のルーレット
-    roulette, roulette3 = setInterval(function() {
-      // skill_json取得
-      var skillJson = $('.skill_json').val();
-      // arr_jsonをパースし配列にする
-      var skill = JSON.parse(skillJson);
-      // 要素数
-      var skill_len = skill.length - 1
-
-      // ランダムな数値を作成し、配列を決定
-      var idx = Math.floor( Math.random() * skill_len ) + 1;
-      document.getElementById("roulette").innerHTML = skill[idx];
-
-      // ２つ目の配列
-      var idx = Math.floor( Math.random() * skill_len ) + 1;
-      document.getElementById("roulette3").innerHTML = skill[idx];
-    }, 100);
-
-    // 縛りのルーレット
-    roulette2, roulette4 = setInterval(function() {
-      // limit_json取得
-      var limitJson = $('.limit_json').val();
-      // limit_jsonをパースし配列にする
-      var limit = JSON.parse(limitJson);
-      // 要素数
-      var limit_len = limit.length - 1
-
-      // ランダムな数値を作成
-      var idx = Math.floor( Math.random() * limit_len ) + 1;
-      document.getElementById("roulette2").innerHTML = limit[idx];
-
-      // ２つ目の配列
-      var idx = Math.floor( Math.random() * limit_len ) + 1;
-      document.getElementById("roulette4").innerHTML = limit[idx];
-    }, 100);
-
-    // スタートボタンを一度しか押せないようにする
-    document.getElementById("start").disabled = true
-    document.getElementById("stop").disabled = false
-  }
- 
-  // ルーレットを停止
-  function stop() {
-    if(roulette) {
-      clearInterval(roulette);
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
     }
+  });   
+}
 
-    if(roulette2) {
-      clearInterval(roulette2);
-    }
-
-    if(roulette3) {
-      clearInterval(roulette3);
-    }
-
-    if(roulette4) {
-      clearInterval(roulette4);
-    }
-
-    document.getElementById("start").disabled = false
-    document.getElementById("stop").disabled = true
-  }
 </script>
-
-
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmwCuIp0B5DCDkt_APxwTVTk0ymSMm5e4&callback=initMap" async defer></script>
