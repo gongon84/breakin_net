@@ -49,6 +49,27 @@
             <h2 class="card-title ml-md-3"><%= post.place %></h2>
             <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= post.station %></h4>
             <%= link_to("詳しく見る", "/posts/#{@pref}/#{post.place}", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+            <%# いいね %>
+            <%# ログインしてるとき %>
+            <% if @current_user %>
+              <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+                <%= link_to("/likes/#{post.id}/destroy", method: "post", class: "btn d-md-inline-block d-none") do %>
+                  <i class="fas fa-heart" style="color: red;"></i>
+                  <%= Like.where(post_id: post.id).count %>
+                <% end %>
+              <% else %>
+                <%= link_to("/likes/#{post.id}/create", method: "post", class: "btn d-md-inline-block d-none") do %>
+                  <i class="far fa-heart" style="color: black;"></i>
+                  <%= Like.where(post_id: post.id).count %>
+                <% end %>
+              <% end %>
+            <%# ログインしてないとき %>
+            <% else %>
+              <%= link_to("/likes/#{post.id}/create", method: "post", class: "btn d-md-inline-block d-none") do %>
+                <i class="far fa-heart" style="color: black;"></i>
+                <%= Like.where(post_id: post.id).count %>
+              <% end %>
+            <% end %>
           </div>
           <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
             <h4>施設：<%= post.facility %></h4>
@@ -56,6 +77,27 @@
             <h4 class="card-text">料金：<%= post.price %>円</h4>
             <h4 class="card-text">タグ：<span class="text-primary"><%= post.tag %></span></h4>
             <%= link_to("詳しく見る", "/posts/#{@pref}/#{post.place}", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
+            <%# いいね %>
+            <%# ログインしてるとき %>
+            <% if @current_user %>
+              <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+                <%= link_to("/likes/#{post.id}/destroy", method: "post", class: "btn d-md-none d-inline-block") do %>
+                  <i class="fas fa-heart" style="color: red;"></i>
+                  <%= Like.where(post_id: post.id).count %>
+                <% end %>
+              <% else %>
+                <%= link_to("/likes/#{post.id}/create", method: "post", class: "btn d-md-none d-inline-block") do %>
+                  <i class="far fa-heart" style="color: black;"></i>
+                  <%= Like.where(post_id: post.id).count %>
+                <% end %>
+              <% end %>
+            <%# ログインしてないとき %>
+            <% else %>
+              <%= link_to("/likes/#{post.id}/create", method: "post", class: "btn d-md-none d-inline-block") do %>
+                <i class="far fa-heart" style="color: black;"></i>
+                <%= Like.where(post_id: post.id).count %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

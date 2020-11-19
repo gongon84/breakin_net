@@ -38,5 +38,10 @@ Rails.application.routes.draw do
   get 'moves/index' => "moves#index"
   get "moves/show" => "moves#show"
 
+  # いいね
+  get 'likes/index' => "likes#index"
+  post "likes/:post_id/create" => "likes#create"
+  post "likes/:post_id/destroy" => "likes#destroy"
+
   root "home#top"
 end

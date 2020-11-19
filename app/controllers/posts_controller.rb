@@ -27,7 +27,6 @@ class PostsController < ApplicationController
     else
       @post = Post.all.page(params[:page]).per(5).order(updated_at: :desc)
     end
-    # @post = Post.all.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show
