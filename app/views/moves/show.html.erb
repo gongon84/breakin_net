@@ -37,9 +37,9 @@
     <%# 技リスト %>
     <div class="skill-list my-5">
         <h2 class="my-4">技リスト</h2>
-        <div class="moves flex">
+        <div class="moves row">
             <% skills.each do |skill| %>
-                <div class="move-list d-inline-block p-2">
+                <div class="move-list col-md-2 col-3 p-2">
                     <h4><%= skill %></h4>
                 </div>
             <% end %>
@@ -49,9 +49,9 @@
     <%# 制限リスト %>
     <div class="limit-list my-5">
         <h2 class="my-4">条件リスト</h2>
-        <div class="moves flex">
+        <div class="moves row">
             <% limits.each do |limit| %>
-                <div class="move-list d-inline-block p-2">
+                <div class="move-list col-md-2 col-3 p-2">
                     <h4 class="word-wrap: break-word;"><%= limit %></h4>
                 </div>
             <% end %>
