@@ -1,0 +1,48 @@
+/* line 2, app/assets/stylesheets/moves.scss */
+.bonus {
+  height: 1500px;
+}
+
+/* line 4, app/assets/stylesheets/moves.scss */
+.bonus h1 {
+  font-size: 4rem;
+}
+
+/* line 8, app/assets/stylesheets/moves.scss */
+.bonus .move-list {
+  border: 1px solid black;
+}
+
+/* line 14, app/assets/stylesheets/moves.scss */
+.roulette {
+  display: inline-block;
+  border: 1px solid #000000;
+  font-size: 2.5rem;
+  width: 40%;
+  margin: 40px 0;
+}
+
+@media (max-width: 600px) {
+  /* line 26, app/assets/stylesheets/moves.scss */
+  .bonus {
+    height: 1100px;
+  }
+  /* line 28, app/assets/stylesheets/moves.scss */
+  .bonus h1 {
+    font-size: 2rem;
+  }
+  /* line 29, app/assets/stylesheets/moves.scss */
+  .bonus h3 {
+    font-size: 1rem;
+  }
+  /* line 32, app/assets/stylesheets/moves.scss */
+  .bonus .move-list h4 {
+    font-size: 0.7rem;
+  }
+  /* line 35, app/assets/stylesheets/moves.scss */
+  .roulette {
+    font-size: 1rem;
+    width: 40%;
+    margin: 20px 0;
+  }
+}
