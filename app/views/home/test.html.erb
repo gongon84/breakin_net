@@ -38,6 +38,7 @@ let geocoder
 
 // 検索フォームが押されたとき
 function codeAddress(){
+  // 検索フォームの内容を取得
   let inputAddress = document.getElementById('address').value;
 
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
@@ -54,4 +55,4 @@ function codeAddress(){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmwCuIp0B5DCDkt_APxwTVTk0ymSMm5e4&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<% ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

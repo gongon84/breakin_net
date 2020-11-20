@@ -63,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 追記
 gem 'kaminari'
 gem 'rails-i18n'
+gem 'dotenv-rails'
