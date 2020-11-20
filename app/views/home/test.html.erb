@@ -6,14 +6,17 @@
 
 <div id='map'></div>
 
+
 <%# マップの大きさ %>
 <style>
 #map {
-  height: 600px;
-  width: 600px;
+  height: 300px;
+  width: 300px;
 }
 </style>
 
+
+<%# javascript %>
 <script>
 let map
 
@@ -55,4 +58,6 @@ function codeAddress(){
 }
 
 </script>
+
+<%# g-map API %>
 <script src="https://maps.googleapis.com/maps/api/js?key=<% ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

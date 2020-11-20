@@ -52,6 +52,11 @@ ul.pagination {
     max-width: 90%;
 }
 
+.g-map iframe {
+    width: 80%;
+    height: 400px;
+}
+
 
 // スマホデバイス（タブレット, 600px 未満）
 @media (max-width: 600px) {
@@ -112,7 +117,13 @@ ul.pagination {
     }
 
     // 画像
-    .image_card img{
+    .image_card img {
+        height: 200px;
+    }
+
+    // マップ
+    .g-map iframe {
+        width: 90%;
         height: 200px;
     }
 }
