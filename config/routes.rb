@@ -43,8 +43,8 @@ Rails.application.routes.draw do
   post "moves/limit_create" => "moves#limit_create"
   post "moves/update" => "moves#update"
   post "moves/:user_id/:title/destroy" => "moves#destroy"
-  get "moves/:user_id/:title/show" => "moves#show"
-  get "moves/:user_id/:title/edit" => "moves#edit"
+  get "/moves/:user_id/:title/show" => "moves#show"
+  get "/moves/:user_id/:title/edit" => "moves#edit"
 
   # いいね
   get 'likes/index' => "likes#index"
