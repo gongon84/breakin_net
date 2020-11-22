@@ -1,19 +1,35 @@
 <%# 配列定義 %>
-<% skills = ["１歩", "２歩", "３歩", "６歩", "チェアー", "三点倒立", "CC", "マカコ", "スワイプス", "はね起き", "エアーベイビー",
- "NY", "ワーム", "ドンキー", "トラックス", "LA", "後転倒立", "ウインド", "スワイプス", "トーマス", "タートル"] %>
-<% limits = ["ノーマル", "片手で", "頭をついて", "肘をついて", "移動しながら", "ジャンプして", "片手を腰に", "手をクロスして", 
-"足抜き", "足or手首タッチ", "バタバタ"] %>
+<% skill_array = [] %>
+<% limit_array = [] %>
+<% @move_skill.each do |move_skill| %>
+  <% if move_skill.skill %>
+    <% skill_array.push(move_skill.skill) %>
+  <% end %>
+  <% if move_skill.limit %>
+    <% limit_array.push(move_skill.limit) %>
+  <% end %>
+<% end %>
 
 <%# javascriptへ送る %>
-<% skill_json = skills.to_json.html_safe %>
-<% limit_json = limits.to_json.html_safe %>
+<%# skill_json = skills.to_json.html_safe %>
+<% skill_json = skill_array.to_json.html_safe %>
+<% limit_json = limit_array.to_json.html_safe %>
+
 
 <%# ムーブメイク %>
 <div class="container bonus" style="background-color: #EEEEEE;">
+
+    <%# フラッシュ　投稿追加 %>
+    <% unless flash[:alert].blank? %>
+        <div class="alert alert-danger m-0" role="alert">
+          <h3><%= safe_join(flash[:alert].join("\n").split("\n"), tag(:br)) %></h3>
+        </div>
+    <% end %>
+
     <%# タイトル %>
     <div class="text-center p-2 p-md-5 mt-5">
-        <h1>お試しパック</h1>
-        <h3 class="mt-4">管理者</h3>
+        <h1><%= @move.title %></h1>
+        <h3 class="mt-4"><%= link_to("#{@move.user.name}", "/users/#{@move.user.id}") %></h3>
     </div>
 
     <%# ルーレット　%>
@@ -35,31 +51,119 @@
     </div>
 
     <%# 技リスト %>
-    <div class="skill-list my-5">
+    <div class="skill-list my-5 mx-3 mx-md-0">
         <h2 class="my-4">技リスト</h2>
         <div class="moves row">
-            <% skills.each do |skill| %>
+            <% @move_skill.each do |move_skill| %>
+              <% if move_skill.skill %>
                 <div class="move-list col-md-2 col-3 p-2">
-                    <h4><%= skill %></h4>
+                  <h4><%= move_skill.skill %></h4>
                 </div>
+              <% end %>
             <% end %>
         </div>
     </div>
 
     <%# 制限リスト %>
-    <div class="limit-list my-5">
+    <div class="limit-list my-5 mx-3 mx-md-0">
         <h2 class="my-4">条件リスト</h2>
         <div class="moves row">
-            <% limits.each do |limit| %>
+            <% @move_skill.each do |move_skill| %>
+              <% if move_skill.limit %>
                 <div class="move-list col-md-2 col-3 p-2">
-                    <h4 class="word-wrap: break-word;"><%= limit %></h4>
+                    <h4><%= move_skill.limit %></h4>
                 </div>
+              <% end %>
             <% end %>
         </div>
     </div>
 
-    <%# 予告 %>
-    <h3 class="mt-5">※今後は、自分で「技」と「縛り」を追加できるようにする予定です。</h3>
+
+    <%# フォーム %>
+    <div class="row pt-5" style="border-top: 2px solid black;">
+      <div class="col-12 py-3">
+        <h3>１度に３つまで追加可能です</h3>
+      </div>
+      <%# 技追加 フォーム %>
+      <div class="col-6" style="word-wrap: break-word;">
+        <%= form_tag("/moves/skill_create") do %>
+          <%# user_id　非表示 %>
+          <div class="form-group m-0">
+            <input class="form-control" name="user_id" id="user_id" type="hidden" value="<%= @move.user_id %>" readonly="readonly">
+          </div>
+          <%# title　非表示 %>
+          <div class="form-group m-0">
+            <input class="form-control" name="title" id="title" type="hidden" value="<%= @move.title %>" readonly="readonly">
+          </div>
+          <div class="form-group">
+              <input class="form-control" name="skill" id="skill" type="text" required placeholder="技">
+          </div>
+          <div class="form-group">
+              <input class="form-control" name="skill2" id="skill2" type="text" placeholder="技２">
+          </div>
+          <div class="form-group">
+              <input class="form-control" name="skill3" id="skill3" type="text" placeholder="技３">
+          </div>
+          <% if @current_user && @user.id == @current_user.id %>
+            <button type="submit" value="追加" class="btn btn-raised btn-primary">技　追加</button>
+          <% else %>
+            <button disabled value="追加" class="btn btn-raised btn-primary mb-3">技　追加</button>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%# 条件追加 フォーム %>
+      <div class="col-6" style="word-wrap: break-word;">
+        <%= form_tag("/moves/limit_create") do %>
+          <%# user_id　非表示 %>
+          <div class="form-group m-0">
+            <input class="form-control" name="user_id" id="user_id" type="hidden" value="<%= @move.user_id %>" readonly="readonly">
+          </div>
+          <%# title　非表示 %>
+          <div class="form-group m-0">
+            <input class="form-control" name="title" id="title" type="hidden" value="<%= @move.title %>" readonly="readonly">
+          </div>
+          <div class="form-group">
+              <input class="form-control" name="limit" id="limit" type="text" required placeholder="条件">
+          </div>
+          <div class="form-group">
+              <input class="form-control" name="limit2" id="limit2" type="text" placeholder="条件２">
+          </div>
+          <div class="form-group">
+              <input class="form-control" name="limit3" id="limit3" type="text" placeholder="条件３">
+          </div>
+          <% if @current_user && @user.id == @current_user.id %>
+            <button type="submit" value="追加" class="btn btn-raised btn-primary">条件　追加</button>
+          <% else %>
+            <button disabled value="追加" class="btn btn-raised btn-primary mb-3">条件　追加</button>
+          <% end %>
+        <% end %>
+      </div>
+      <% unless @current_user && @user.id == @current_user.id %>
+        <div class="col-12 py-3">
+          <h3>※追加にはアカウントが必要です</h3>
+        </div>
+      <% end %>
+    </div>
+
+    <%# 編集・削除ボタン %>
+    <% if @current_user && @user.id == @current_user.id %>
+      <div class="row mt-5">
+        <%# 編集 %>
+        <div class="col-12 mb-2">
+          <%= link_to("編集", "/moves/#{@move.user_id}/#{@move.title}/edit", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+          <%= link_to("編集", "/moves/#{@move.user_id}/#{@move.title}/edit", class: "btn btn-outline-primary ml-md-3 d-md-none d-inline-block") %>
+        </div>
+        <%# 削除 %>
+        <div class="col-12">
+          <%= link_to("削除", "/moves/#{@move.user_id}/#{@move.title}/destroy", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none",
+          method: "post", data: {confirm: "【確認】「#{@move.title}」を削除してよろしいですか？"}) %>
+          <%= link_to("削除", "/moves/#{@move.user_id}/#{@move.title}/destroy", class: "btn btn-outline-primary ml-md-3 d-md-none d-inline-block",
+          method: "post", data: {confirm: "【確認】「#{@move.title}」を削除してよろしいですか？"}) %>
+        </div>
+      </div>
+    <% end %>
+
 </div>
 
 
@@ -80,14 +184,14 @@
       // arr_jsonをパースし配列にする
       var skill = JSON.parse(skillJson);
       // 要素数
-      var skill_len = skill.length - 1
+      var skill_len = skill.length - 0
 
       // ランダムな数値を作成し、配列を決定
-      var idx = Math.floor( Math.random() * skill_len ) + 1;
+      var idx = Math.floor( Math.random() * skill_len ) + 0;
       document.getElementById("roulette").innerHTML = skill[idx];
 
       // ２つ目の配列
-      var idx = Math.floor( Math.random() * skill_len ) + 1;
+      var idx = Math.floor( Math.random() * skill_len ) + 0;
       document.getElementById("roulette3").innerHTML = skill[idx];
     }, 100);
 
@@ -98,14 +202,14 @@
       // limit_jsonをパースし配列にする
       var limit = JSON.parse(limitJson);
       // 要素数
-      var limit_len = limit.length - 1
+      var limit_len = limit.length - 0
 
       // ランダムな数値を作成
-      var idx = Math.floor( Math.random() * limit_len ) + 1;
+      var idx = Math.floor( Math.random() * limit_len ) + 0;
       document.getElementById("roulette2").innerHTML = limit[idx];
 
       // ２つ目の配列
-      var idx = Math.floor( Math.random() * limit_len ) + 1;
+      var idx = Math.floor( Math.random() * limit_len ) + 0;
       document.getElementById("roulette4").innerHTML = limit[idx];
     }, 100);
 

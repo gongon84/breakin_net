@@ -1,22 +1,52 @@
 <div class="container bonus">
 
+    <%# フラッシュ　投稿追加 %>
+    <% if flash[:notice] %>
+        <div class="alert alert-success m-0" role="alert">
+            <h3><%= flash[:notice] %></h3>
+        </div>
+    <% end %>
+
+    <%# 追加 %>
+    <%= link_to '追加', "/moves/new", class: "btn btn-outline-primary mt-3 ml-auto ml-sm-3" %>
+
     <%# タイトル %>
-    <div class="text-center p-2 p-md-5 mt-5">
+    <div class="text-center p-2 p-md-5 mt-3">
         <h1>Move Maker</h1>
         <h3 class="mt-4">ルーレットを回してお題をクリアしよう！<br>新しい技が生まれるかも？</h3>
     </div>
 
-    <%# テーブル %>
-    <div class="card mt-5">
-        <div class="row card-body">
-        <div class="table-card-up col-md-5 col-12 px-md-3">
-            <h2 class="card-title ml-md-3">お試しパック</h2>
-            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">管理者(いいね数)</span></h4>
-            <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+    <%# 投稿一覧 %>
+    <%# データがあるとき %>
+    <% if @move.size > 0 %>
+        <% user_id = [] %>
+        <% title = [] %>
+        <% @move.each do |move| %>
+            <%# user_idとtitleを１セットで表示 %>
+            <% unless user_id.include?(move.user_id) && title.include?(move.title) %>
+                <%# テーブル %>
+                <div class="card">
+                    <div class="row card-body">
+                    <div class="table-card-up col-md-5 col-12 px-md-3">
+                        <h2 class="card-title ml-md-3"><%= move.title %></h2>
+                        <h4 class="ml-md-3 my-md-3"><span class="text-secondary"><%= move.user.name %></span></h4>
+                        <%= link_to("挑戦する", "/moves/#{move.user_id}/#{move.title}/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+                    </div>
+                    <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+                        <%= link_to("挑戦する", "/moves/#{move.user_id}/#{move.title}/show", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block",
+                        method: "post") %>
+                    </div>
+                    </div>
+                </div>
+                <% user_id.push(move.user_id) %>
+                <% title.push(move.title) %>
+            <% end %>
+        <% end %>
+    <% else %>
+        <%# データがないとき %>
+        <div class="no-regi text-center my-5 py-sm-5">
+        <h1>ーーーまだ何も登録されていません。ーーー</h1>
         </div>
-        <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
-            <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
-        </div>
-        </div>
-    </div>
+    <% end %>
+
 </div>

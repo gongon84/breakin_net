@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/posts/:pref/:place/editImage" => "posts#editImage"
   post "/posts/updateImage" => "posts#updateImage"
   post "/posts/:pref/:place/defaultImage" => "posts#defaultImage"
+
   # コメント
   get "/comment/:pref/:place" => "comments#index"
   post "/comments/create" => "comments#create"
@@ -36,7 +37,14 @@ Rails.application.routes.draw do
 
   # ムーブ
   get 'moves/index' => "moves#index"
-  get "moves/show" => "moves#show"
+  get "moves/new" => "moves#new"
+  post "moves/create" => "moves#create"
+  post "moves/skill_create" => "moves#skill_create"
+  post "moves/limit_create" => "moves#limit_create"
+  post "moves/update" => "moves#update"
+  post "moves/:user_id/:title/destroy" => "moves#destroy"
+  get "moves/:user_id/:title/show" => "moves#show"
+  get "moves/:user_id/:title/edit" => "moves#edit"
 
   # いいね
   get 'likes/index' => "likes#index"

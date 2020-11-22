@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @post = Post.where(user_id: @user.id)
+    @move = Move.where(user_id: @user.id)
     @like = Like.where(user_id: @user.id)
   end
 

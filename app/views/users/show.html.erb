@@ -40,8 +40,9 @@
           <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">いいね</a>
         </div>
       </nav>
-      <%# navコンテンツ 練習場所　%>
+      <%# navコンテンツ %>
       <div class="tab-content" id="nav-tabContent">
+        <%# 練習場所 %>
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <%# @postがあれば表示 %>
           <% if @post.size > 0 %>
@@ -119,22 +120,33 @@
             </div>
           <% end %>
         </div>
+
         <%# navコンテンツ　ムーブ %>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <% if @user.name == "管理者" %>
-          <div class="card">
-            <div class="row card-body">
-              <%# テーブル %>
-              <div class="table-card-up col-md-5 col-12 px-md-3">
-                <h2 class="card-title ml-md-3">お試しパック</h2>
-                <h4 class="ml-md-3 my-md-3"><span class="text-secondary">管理者(いいね数)</span></h4>
-                <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
-              </div>
-              <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
-                <%= link_to("挑戦する", "/moves/show", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
-              </div>
-            </div>
-          </div>
+        <% if @move.size > 0 %>
+          <% user_id = [] %>
+          <% title = [] %>
+          <% @move.each do |move| %>
+              <%# user_idとtitleを１セットで表示 %>
+              <% unless user_id.include?(move.user_id) && title.include?(move.title) %>
+                  <%# テーブル %>
+                  <div class="card">
+                      <div class="row card-body">
+                      <div class="table-card-up col-md-5 col-12 px-md-3">
+                          <h2 class="card-title ml-md-3"><%= move.title %></h2>
+                          <h4 class="ml-md-3 my-md-3"><span class="text-secondary"><%= move.user.name %></span></h4>
+                          <%= link_to("挑戦する", "/moves/#{move.user_id}/#{move.title}/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+                      </div>
+                      <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+                          <%= link_to("挑戦する", "/moves/#{move.user_id}/#{move.title}/show", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block",
+                          method: "post") %>
+                      </div>
+                      </div>
+                  </div>
+                  <% user_id.push(move.user_id) %>
+                  <% title.push(move.title) %>
+              <% end %>
+          <% end %>
         <%# ムーブがない場合 %>
         <% else %>
           <div class="card">
@@ -146,6 +158,7 @@
           </div>
         <% end %>  
         </div>
+        
         <%# navコンテンツ　いいね %>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
           <%# @likeがあるとき %>
