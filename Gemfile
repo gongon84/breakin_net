@@ -61,6 +61,14 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追記
+# ページネーション
 gem 'kaminari'
+
+# エラー文を日本語に 
 gem 'rails-i18n'
+
+# 非公開ファイルの管理
 gem 'dotenv-rails'
+
+# 画像アップロード
+gem 'carrierwave'

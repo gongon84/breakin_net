@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def create
     @pref = params[:pref]
     @post = Post.new(user_id: params[:user_id], pref: params[:pref], place: params[:place], station: params[:station], 
-      facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag], image_name: "NoImage.jpg")
+      facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag])
     if @post.save!
       redirect_to("/posts/#{@pref}", notice: "#{@post.place}を登録しました")
     else
@@ -86,11 +86,14 @@ class PostsController < ApplicationController
 
   def updateImage
     @post = Post.find_by(pref: params[:pref], place: params[:place])
-    if params[:new_image_name]
-      @post.image_name = "#{@post.id}.jpg"
-      image = params[:new_image_name]
-      File.binwrite("public/posts_images/#{@post.image_name}", image.read)
-    end
+    # 普通の画像アップロード
+    # if params[:new_image_name]
+    #   @post.image_name = "#{@post.id}.jpg"
+    #   image = params[:new_image_name]
+    #   File.binwrite("public/posts_images/#{@post.image_name}", image.read)
+    # end
+    # carrierwave
+    @post.image_name = params[:image_name]
     if @post.save
       redirect_to("/posts/#{@post.pref}/#{@post.place}")
     else

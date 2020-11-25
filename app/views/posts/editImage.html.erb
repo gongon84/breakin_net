@@ -20,6 +20,7 @@
         <div class="form-group pb-3">
             <label for="description">画像</label>
             <input class="form-control" name="new_image_name" id="new_image_name" type="file" value="<%= @post.image_name %>">
+            <input class="form-control" name="image_name" id="image_name" type="file" value="<%= @post.image_name %>">
         </div>
         <button type="submit" value="投稿" class="btn btn-raised btn-outline-primary">編集</button>
     <% end %>
