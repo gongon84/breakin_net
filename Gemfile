@@ -72,3 +72,6 @@ gem 'dotenv-rails'
 
 # 画像アップロード
 gem 'carrierwave'
+
+# 画像保存
+gem 'cloudinary'
