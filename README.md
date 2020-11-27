@@ -12,7 +12,12 @@ https://breakin-net.herokuapp.com
 
 
 # 機能
-・投稿機能  
-・コメント機能  
-・ページネーション機能(kaminari)  
-・検索機能
+● ユーザー登録、ログイン機能  
+● 投稿機能  
+　○ レッスン、練習場所、技の情報  
+　○ 画像投稿(Carrierwave)  
+　○ 画像保存(Cloudinary API)  
+● コメント機能  
+● いいね機能  
+● ページネーション機能(kaminari)  
+● 検索機能
