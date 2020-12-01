@@ -15,40 +15,55 @@
 <% skill_json = skill_array.to_json.html_safe %>
 <% limit_json = limit_array.to_json.html_safe %>
 
-
 <%# ムーブメイク %>
-<div class="container bonus" style="background-color: #EEEEEE;">
+<div class="move-maker">
 
-    <%# フラッシュ　投稿追加 %>
-    <% unless flash[:alert].blank? %>
-        <div class="alert alert-danger m-0" role="alert">
-          <h3><%= safe_join(flash[:alert].join("\n").split("\n"), tag(:br)) %></h3>
-        </div>
-    <% end %>
+  <%# フラッシュ　投稿追加 %>
+  <% unless flash[:alert].blank? %>
+    <div class="alert alert-danger m-0" role="alert">
+      <h3><%= safe_join(flash[:alert].join("\n").split("\n"), tag(:br)) %></h3>
+    </div>
+  <% end %>  
 
-    <%# タイトル %>
-    <div class="text-center p-2 p-md-5 mt-5">
-        <h1><%= @move.title %></h1>
-        <h3 class="mt-4"><%= link_to("#{@move.user.name}", "/users/#{@move.user.id}") %></h3>
+  <%# ルーレットエリア %>
+  <div class="roulette-area text-center">
+
+  <%# タイトル %>
+  <div class="text-center p-2 p-md-5">
+    <h1 style="color:white; background-color:#694216; border: 3px solid #875A1F;" class="p-2 mt-5"><%= @move.title %></h1>
+    <h3 class="my-4"><%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:white;") %></h3>
+  </div>
+
+  
+
+  <%# 画像 %>
+  <%= image_tag "/assets/stage_rock.jpg", alt: "岩", class: "rock" %>
+  <%= image_tag "/assets/stage_battle.jpg", alt: "バトル", class: "battle" %>
+
+  <%# ルーレット　%>
+  <div class="outline text-center">
+    <div class="flex">
+      <div class="roulette" id="roulette2">縛り</div>
+      <div class="roulette" id="roulette">技</div>
+    </div>
+    <i class="fa fa-arrow-down fa-3x" style="color: white;"></i>
+    <div class="flex">
+      <div class="roulette" id="roulette4">縛り</div>
+      <div class="roulette" id="roulette3">技</div>
+    </div>
+    <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
+    <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
+    <div class="d-flex justify-content-around">
+      <input type="button" value="スタート" id="start" onclick="start()" class="btn start my-3">
+      <input type="button" value="ストップ" id="stop" onclick="stop();" class="btn stop my-3">
     </div>
 
-    <%# ルーレット　%>
-    <div class="outline text-center">
-        <div class="flex">
-        <div class="roulette" id="roulette2">縛り</div>
-        <div class="roulette" id="roulette">技</div>
-        </div>
-        <i class="fa fa-arrow-down fa-3x"></i>
-        <div class="flex">
-        <div class="roulette" id="roulette4">縛り</div>
-        <div class="roulette" id="roulette3">技</div>
-        </div>
-        <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
-        <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
-        <input type="button" value="スタート" id="start" onclick="start()" class="my-3 mx-2">
-        <input type="button" value="ストップ" id="stop" onclick="stop();" class="my-3 mx-2">
+  </div>
 
-    </div>
+  </div>
+
+  <%# ムーブメイク　後半 %>
+  <div class="container" style="background-color: #EEEEEE;">
 
     <%# 技リスト %>
     <div class="skill-list my-5 mx-3 mx-md-0">
@@ -164,6 +179,7 @@
       </div>
     <% end %>
 
+</div>
 </div>
 
 
