@@ -1,8 +1,16 @@
-// ムーブメイク
+// indexページ
+.index-title {
+    h3 { font-size: 2rem; }
+}
+
+// showページ
 .move-maker {
     height: 100%;
-    h1 { 
-      font-size: 4rem;
+    h1 {
+        margin: 0 auto;
+        margin-top: 50px;
+        font-size: 4rem;
+        width: 80%;
     }
 
     & .move-list {
@@ -14,6 +22,21 @@
         background-color: black;
         padding-bottom: 50px;
 
+        // タイトル
+        & .name-title {
+            height: 100%;
+            background-image: url("/assets/name_frame.jpg");
+            background-repeat: no-repeat;
+            background-size: 70%;
+            background-position: center;
+            margin: 50px 0;
+            & h1 {
+                color: white;
+                width: 70%;
+                padding: 20px;
+            }
+        }
+
         // ルーレット
         & .roulette {
             display: inline-block;
@@ -24,17 +47,20 @@
             margin: 40px 0;
         }
 
-        // 画像
-        & .rock {
-            height: 60px;
-            width: 100%;
+        // バトル　背景画像
+        & .battle-stage {
+            height: 350px;
+            background-image: url("/assets/stage.jpg");
+            background-repeat: no-repeat;
+            background-size: 80%;
+            background-position: center;
         }
-
-        & .battle {
-            height: 100px;
-            width: 50%;
-            margin-top: 70px;
-            margin-bottom: 50px;
+        
+        // 勇者
+        & .yusya {
+            height: 60px;
+            width: 8%;
+            margin-top: 120px;
         }
 
         // ボタン
@@ -52,10 +78,18 @@
 
 // スマホデバイス（タブレット, 480px 未満）
 @media (max-width: 600px) {
-    // ムーブメイク
+    // indexページ
+    .index-title {
+        h3 { font-size: 1rem; }
+    }
+
+    // showページ
     .move-maker {
         height: 100%;
-        h1 { font-size: 2rem;}
+        h1 { 
+            font-size: 1.4rem;
+            margin-top: 40px;
+        }
         h3 { font-size: 1rem;}
 
         & .move-list {
@@ -63,18 +97,26 @@
         }
         
         & .roulette-area {
-            // 画像
-            & .rock {
-                height: 30px;
-                width: 100%;
+            // タイトル
+            & .name-title {
+                background-size: 80%;
+                margin: 20px 0;
+                & h1 {
+                    width: 80%;
+                    padding: 10px;
+                }
             }
 
-            & .battle {
-                height: 60px;
-                width: 80%;
-                margin-top: 40px;
-                margin-bottom: 20px;
+            // 画像
+            & .battle-stage {
+                height: 200px;
+                background-size: 100%;
             }
+
+            & .yusya {
+                margin-top: 70px;
+                width: 10%;
+            }          
 
             & .btn {
                 height: 70px;

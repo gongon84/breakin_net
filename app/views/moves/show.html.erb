@@ -17,7 +17,6 @@
 
 <%# ムーブメイク %>
 <div class="move-maker">
-
   <%# フラッシュ　投稿追加 %>
   <% unless flash[:alert].blank? %>
     <div class="alert alert-danger m-0" role="alert">
@@ -27,39 +26,38 @@
 
   <%# ルーレットエリア %>
   <div class="roulette-area text-center">
-
-  <%# タイトル %>
-  <div class="text-center p-2 p-md-5">
-    <h1 style="color:white; background-color:#694216; border: 3px solid #875A1F;" class="p-2 mt-5"><%= @move.title %></h1>
-    <h3 class="my-4"><%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:white;") %></h3>
-  </div>
-
-  
-
-  <%# 画像 %>
-  <%= image_tag "/assets/stage_rock.jpg", alt: "岩", class: "rock" %>
-  <%= image_tag "/assets/stage_battle.jpg", alt: "バトル", class: "battle" %>
-
-  <%# ルーレット　%>
-  <div class="outline text-center">
-    <div class="flex">
-      <div class="roulette" id="roulette2">縛り</div>
-      <div class="roulette" id="roulette">技</div>
-    </div>
-    <i class="fa fa-arrow-down fa-3x" style="color: white;"></i>
-    <div class="flex">
-      <div class="roulette" id="roulette4">縛り</div>
-      <div class="roulette" id="roulette3">技</div>
-    </div>
-    <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
-    <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
-    <div class="d-flex justify-content-around">
-      <input type="button" value="スタート" id="start" onclick="start()" class="btn start my-3">
-      <input type="button" value="ストップ" id="stop" onclick="stop();" class="btn stop my-3">
+    <%# タイトル %>
+    <div class="text-center p-2 p-md-5">
+      <div class="name-title">
+        <h1 class="">目指せパワームーバー<br><%= @move.title %></h1>
+      </div>
+      <h3 class="my-4" style="color:white;">作成者：<%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:white;") %></h3>
     </div>
 
-  </div>
+    <%# 画像 %>
+    <div class="mb-sm-4 battle-stage d-flex justify-content-around align-items-center">
+        <%= image_tag "/assets/himiko.jpg", alt: "バトル", class: "yusya " %>
+        <%= image_tag "/assets/yusya.jpg", alt: "バトル", class: "yusya" %>
+    </div>
 
+    <%# ルーレット　%>
+    <div class="outline text-center">
+      <div class="flex">
+        <div class="roulette" id="roulette2">縛り</div>
+        <div class="roulette" id="roulette">技</div>
+      </div>
+      <i class="fa fa-arrow-down fa-3x" style="color: white;"></i>
+      <div class="flex">
+        <div class="roulette" id="roulette4">縛り</div>
+        <div class="roulette" id="roulette3">技</div>
+      </div>
+      <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
+      <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
+      <div class="d-flex justify-content-around">
+        <input type="button" value="スタート" id="start" onclick="start()" class="btn start my-3">
+        <input type="button" value="ストップ" id="stop" onclick="stop();" class="btn stop my-3">
+      </div>
+    </div>
   </div>
 
   <%# ムーブメイク　後半 %>

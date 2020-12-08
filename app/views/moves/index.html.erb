@@ -11,7 +11,7 @@
     <%= link_to '追加', "/moves/new", class: "btn btn-outline-primary mt-3 ml-auto ml-sm-3" %>
 
     <%# タイトル %>
-    <div class="text-center p-2 p-md-5 mt-3">
+    <div class="index-title text-center p-2 p-md-5 mt-3">
         <h1>Move Maker</h1>
         <h3 class="mt-4">ルーレットを回してお題をクリアしよう！<br>新しい技が生まれるかも？</h3>
     </div>
@@ -28,6 +28,9 @@
                 <div class="card">
                     <div class="row card-body">
                     <div class="table-card-up col-md-5 col-12 px-md-3">
+                        <time datetime="<%= move.updated_at %>">
+                            <h6 class="ml-md-3"><%= time_ago_in_words(move.updated_at) %>前</h6>
+                        </time>
                         <h2 class="card-title ml-md-3"><%= move.title %></h2>
                         <h4 class="ml-md-3 my-md-3"><span class="text-secondary"><%= move.user.name %></span></h4>
                         <%= link_to("挑戦する", "/moves/#{move.user_id}/#{move.title}/show", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
