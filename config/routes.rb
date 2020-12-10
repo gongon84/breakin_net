@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get '/' => "home#top"
   get "/about" => "home#about"
+  get "/about/lesson" => "home#lesson"
+  get "/about/place" => "home#place"
+  get "/about/move" => "home#move"
+  get "/about/account" => "home#account"
   get "/test" => "home#test"
   get "/wait" => "home#wait"
 

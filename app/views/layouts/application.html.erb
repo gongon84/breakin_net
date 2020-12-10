@@ -39,11 +39,11 @@
             <% end %>
             <%# ユーザー 一覧 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'table' %>">
-              <%= link_to('ユーザー一覧', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1") %>
+              <%= link_to('ユーザー検索', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# 使い方 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'about' %>">
-              <%= link_to('使い方', "/wait", class: "nav-link font-italic ml-sm-3 ml-1") %>
+              <%= link_to('使い方', "/about", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
             <%# レッスンを見つける %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'lesson' %>">

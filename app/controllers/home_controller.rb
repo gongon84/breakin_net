@@ -5,6 +5,18 @@ class HomeController < ApplicationController
   def about
   end
 
+  def lesson
+  end
+
+  def place
+  end
+
+  def move
+  end
+
+  def account
+  end
+
   def test
   end
 

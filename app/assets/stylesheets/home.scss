@@ -10,6 +10,56 @@
   & h4 { margin-bottom: 5rem; }
 }
 
+// aboutページ
+.about-wrap {
+  margin-top: 80px;
+
+  &.about-account {
+    margin-top: 100px;
+  }
+
+  &.about-service {
+    margin-top: 60px;;
+  }
+
+  & h1 {
+    width: 40%;
+    margin: 15px auto;
+    color: #444;
+    text-align: center;
+  }
+
+  & p.border-title {
+    width: 7%;
+    margin: 0 auto;
+    border-top: 3px solid #1E90FF;
+  }
+
+  .about-group {
+    margin-top: 50px;
+
+    & a {
+      width: 30%;
+      padding: 40px;
+      margin-left: 40px;
+      border: 2px solid grey;
+      border-radius: 5%;
+      text-align: center;
+      font-size: 18pt;
+      color: grey;
+  
+      &:hover {
+        text-decoration: none;
+        cursor: pointer;
+        color: white;
+        background-color: grey;
+      }
+    }
+  }
+}
+
+
+
 
 // スマホデバイス（タブレット, 480px 未満）
 @media (max-width: 600px) {
@@ -30,8 +80,45 @@
       margin-bottom: 5rem;
     }
   }
-}
 
+  // aboutページ
+  .about-wrap {
+    margin-top: 40px;
+
+    &.about-account {
+      margin-top: 70px;
+    }
+
+    &.about-service {
+      margin-top: 40px;;
+    }
+
+    & h1 {
+      width: 100%;
+      margin: 10px auto;
+      font-size: 1rem;
+    }
+  
+    & p.border-title {
+      width: 7%;
+      margin: 0 auto;
+      border-top: 3px solid #1E90FF;
+    }
+
+    .about-group {
+      margin-top: 20px;
+
+      & a {
+        width: 80%;
+        display: block;
+        margin: 15px auto;
+        padding: 15px;
+        border-radius: 5%;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
 
 
 // トップページ　タイトル　アニメーション

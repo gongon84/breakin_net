@@ -29,14 +29,14 @@
     <%# タイトル %>
     <div class="text-center p-2 p-md-5">
       <div class="name-title">
-        <h1 class="">目指せパワームーバー<br><%= @move.title %></h1>
+        <h1 class="neon"><%# @move.title %>目指せパワームーバー</h1>
       </div>
-      <h3 class="my-4" style="color:white;">作成者：<%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:white;") %></h3>
+      <h3 class="my-4 neon" style="color:white;">作成者：<%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:white;") %></h3>
     </div>
 
     <%# 画像 %>
     <div class="mb-sm-4 battle-stage d-flex justify-content-around align-items-center">
-        <%= image_tag "/assets/himiko.jpg", alt: "バトル", class: "yusya " %>
+        <%= image_tag "/assets/himiko.jpg", alt: "バトル", class: "yusya" %>
         <%= image_tag "/assets/yusya.jpg", alt: "バトル", class: "yusya" %>
     </div>
 
