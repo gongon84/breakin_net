@@ -1,0 +1,28 @@
+/* line 3, app/assets/stylesheets/questions.scss */
+.question-wrap h1 {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+/* line 9, app/assets/stylesheets/questions.scss */
+.question-wrap .delete-btn {
+  width: 100%;
+  margin-top: 50px;
+  margin-right: 10px;
+  border: 1px solid #157AF6;
+  color: #157AF6;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  /* line 25, app/assets/stylesheets/questions.scss */
+  .question-wrap h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+  }
+  /* line 32, app/assets/stylesheets/questions.scss */
+  .question-wrap .delete-btn {
+    font-size: 0.5rem;
+  }
+}
