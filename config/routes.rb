@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
+
   get '/' => "home#top"
   get "/about" => "home#about"
   get "/about/lesson" => "home#lesson"
   get "/about/place" => "home#place"
   get "/about/move" => "home#move"
   get "/about/account" => "home#account"
+  get "/about/question" => "home#question"
   get "/test" => "home#test"
   get "/wait" => "home#wait"
+
+  # 質問スレッド
+  get 'questions/index' => "questions#index"
+  post 'questions/create' => "questions#create"
+  post 'questions/:id/destroy' => "questions#destroy"
 
   # ポスト投稿
   get '/posts/index' => "posts#index"

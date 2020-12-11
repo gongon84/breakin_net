@@ -17,6 +17,9 @@ class HomeController < ApplicationController
   def account
   end
 
+  def question
+  end
+
   def test
   end
 
