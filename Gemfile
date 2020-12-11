@@ -75,3 +75,6 @@ gem 'carrierwave'
 
 # 画像保存
 gem 'cloudinary'
+
+# パスワードのハッシュ化
+gem 'bcrypt'
