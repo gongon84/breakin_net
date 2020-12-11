@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+    # パスワードのハッシュ化
+    has_secure_password
+
     # postと関連付け
     has_many :posts, dependent: :delete_all
     has_many :comments, through: :posts

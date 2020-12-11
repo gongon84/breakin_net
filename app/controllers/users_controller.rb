@@ -56,8 +56,9 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by(email: params[:email], password: params[:password])
-    if @user
+    @user = User.find_by(email: params[:email])
+    # パスワードを暗号化して一致の確認
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to("/users/#{@user.id}", notice: "ログインしました")
     else
