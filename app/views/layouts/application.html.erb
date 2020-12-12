@@ -37,25 +37,21 @@
                 <%= link_to('アカウント', "/users/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
               </li>
             <% end %>
-            <%# ユーザー 一覧 %>
-            <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'table' %>">
-              <%= link_to('ユーザー検索', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1") %>
-            </li>
             <%# 使い方 %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'about' %>">
               <%= link_to('使い方', "/about", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
-            <%# レッスンを見つける %>
-            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'lesson' %>">
-              <%= link_to('レッスンを見つける', "/wait", class: "nav-link font-italic ml-sm-3 ml-1") %>
+            <%# サービスを利用する %>
+            <li class="nav-item <%= 'active' if controller.controller_name == 'home' && controller.action_name == 'main' %>">
+              <%= link_to('サービスを利用する', "/main", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
-            <%# 場所を見つける %>
-            <li class= "nav-item <%= 'active' if controller.controller_name == 'posts' && controller.action_name == 'index' %>">
-              <%= link_to('場所を見つける', "/posts/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
+            <%# ユーザー 一覧 %>
+            <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'table' %>">
+              <%= link_to('ユーザー検索', "/users/table", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
-            <%# ムーブを作る %>
-            <li class="nav-item <%= 'active' if controller.controller_name == 'moves' && controller.action_name == 'index' %>">
-              <%= link_to('ムーブを管理する', "/moves/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
+            <%# なんでも質問スレッド %>
+            <li class="nav-item <%= 'active' if controller.controller_name == 'questions' && controller.action_name == 'index' %>">
+              <%= link_to('質問スレッド', "/questions/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
           </ul>
         </div>

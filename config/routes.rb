@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/about/move" => "home#move"
   get "/about/account" => "home#account"
   get "/about/question" => "home#question"
+  get "/main" => "home#main"
   get "/test" => "home#test"
   get "/wait" => "home#wait"
 

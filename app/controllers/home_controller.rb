@@ -20,6 +20,9 @@ class HomeController < ApplicationController
   def question
   end
 
+  def main
+  end
+
   def test
   end
 
