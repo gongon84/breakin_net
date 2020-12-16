@@ -14,7 +14,7 @@
     <div class="user mt-5">
         <h2><%= @user.name %></h2>
         <h6 class="my-3"><%= safe_join(@user.profile.split("\n"), tag(:br)) %></h6>
-        <h6><i class="fas fa-link"></i>&nbsp;<%= link_to("#{@user.url}", "#{@user.url}", target: :_blank) %></h6>
+        <h6 class="user-link"><i class="fas fa-link" style="word-wrap: break-word;"></i>&nbsp;<%= link_to("#{@user.url}", "#{@user.url}", target: :_blank) %></h6>
         <h6><i class="fas fa-map-marker-alt"></i>&nbsp;お気に入りの場所</h6>
         <h6><i class="fas fa-hammer"></i>&nbsp;ムーブメイク</h6>
     </div>

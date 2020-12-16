@@ -5,11 +5,12 @@
     <div class="card-body pb-0">
         <%# コメント入力欄%>
         <p class="mb-md-3 mt-md-0 my-2">
-            <a class="btn btn-light comment-btn" style="border:1px solid" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <%# <a class="close-btn btn btn-light comment-btn" style="border:1px solid" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 コメント
-            </a>
+            </a> %>
+            <a class="btn close-btn comment-btn" style="border:1px solid black; background-color: #F8F9FA;">コメント</a>
         </p>
-        <div class="collapse pt-0" id="collapseExample">
+        <div class="collapse collapse-close pt-0" id="collapseExample">
             <div class="row d-flex px-sm-3 mb-sm-3">
                 <%# フォーム %>
                 <div class="col-12" style="word-wrap: break-word;">
@@ -73,3 +74,17 @@
     </div>
 </div>
 </div>
+
+<script language="javascript" type="text/javascript">
+    // collapseが閉じてる時
+    $(".close-btn").on('hidden.bs.collapse click ', function() {
+        $(".collapse-close").collapse('show');
+        // $(".collapse-close").fadeToggle();
+    });
+
+    // collapseが開いてる時
+    $(".close-btn").on('shown.bs.collapse click ', function() {
+        $(".collapse-close").collapse('hide');
+        // $(".collapse-close").fadeToggle();
+    });
+</script>
