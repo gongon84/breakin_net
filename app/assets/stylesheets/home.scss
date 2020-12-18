@@ -10,6 +10,7 @@
   & h4 { margin-bottom: 5rem; }
 }
 
+
 // aboutページ
 .about-wrap {
   margin-top: 80px;
@@ -60,6 +61,7 @@
   }
 }
 
+
 // questionページ
 .about-question {
   margin: 100px 0;
@@ -73,6 +75,32 @@
     margin: 0 auto;
     text-align: center;
     font-size: 1.4rem;
+  }
+}
+
+
+// accountページ
+.card-body {
+  .list-group-item {
+    height: 65px;
+  }
+}
+
+.account-wrap {
+  margin-top: 100px;
+  margin-bottom: 120px;
+
+  h1 {
+    width: 40%;
+    margin: 15px auto;
+    color: #444;
+    text-align: center;
+  }
+
+  p.border-title {
+    width: 7%;
+    margin: 0 auto;
+    border-top: 3px solid #1E90FF;
   }
 }
 
@@ -150,6 +178,43 @@
 
     h4, a {
         font-size: 1rem;
+    }
+  }
+
+
+  // accountページ
+  .card-body {
+    .list-group-item {
+      height: 55px;
+    }
+  }
+
+  .account-wrap {
+    margin-top: 50px;
+    margin-bottom: 60px;
+
+    // タイトル
+    & h1 {
+      width: 100%;
+      margin: 10px auto;
+      font-size: 1.4rem;
+    }
+
+    // タイトルの下線
+    & p.border-title {
+      width: 7%;
+      margin: 0 auto;
+      border-top: 3px solid #1E90FF;
+    }
+
+    // 説明文
+    h3 {
+      font-size: 1rem;
+    }
+
+    // アイコン
+    .fa-circle {
+      font-size: 1em;
     }
   }
 }

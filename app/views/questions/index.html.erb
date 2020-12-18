@@ -46,7 +46,7 @@
         <% if @questions.size > 0 %>
             <% @questions.each do |comment| %>
                 <div class="row border-top">
-                    <div class="comment col-10 col-xs-9 col-md-10 px-md-4 px-1 pt-md-3 pt-2 pb-1" style="word-wrap: break-word;">
+                    <div class="comment col-10 pl-md-4 pl-3 pt-md-3 pt-2 pb-1" style="word-wrap: break-word;">
                     <div class="d-flex">
                         <% if comment.user_id.nil? %>
                             <h6 class="mb-1 mb-md-2"><%= comment.id %>.<%= comment.name %><span class="text-black-50">：<br class="d-block d-md-none"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
@@ -58,7 +58,7 @@
                     <h4 class="comment-content"><%= safe_join(comment.comment.split("\n"), tag(:br)) %></h4>
                     </div>
                     <% if (@current_user && @current_user.id == comment.user_id) or comment.user_id.nil? %>
-                    <div class="p-0 col-2 col-xs-3 col-md-2 d-flex align-items-end">
+                    <div class="p-0 col-2 d-flex align-items-end">
                         <%= link_to("　削除　", "/questions/#{comment.id}/destroy", class: "d-none d-lg-inline-block btn btn-outline-primary align-self-center", method: "post") %>
                         <%# link_to("　削除　", "/questions/#{comment.id}/destroy", class: "d-inline-block d-lg-none btn btn-sm btn-outline-primary align-self-center", method: "post") %>
                         <%= link_to("削除", "/questions/#{comment.id}/destroy", class: "d-inline-block d-lg-none delete-btn", method: "post") %>
