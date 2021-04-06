@@ -1,0 +1,90 @@
+<%# 掲示板 %>
+<div class="question-wrap container">
+<h1 class="text-center">なんでも質問スレッド</h1>
+<div class="borad card">
+    <div class="card-body pb-0">
+        <%# コメント入力欄%>
+        <p class="mb-md-3 mt-md-0 my-2">
+            <%# <a class="close-btn btn btn-light comment-btn" style="border:1px solid" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                コメント
+            </a> %>
+            <a class="btn close-btn comment-btn" style="border:1px solid black; background-color: #F8F9FA;">コメント</a>
+        </p>
+        <div class="collapse collapse-close pt-0" id="collapseExample">
+            <div class="row d-flex px-sm-3 mb-sm-3">
+                <%# フォーム %>
+                <div class="col-12" style="word-wrap: break-word;">
+                    <%= form_tag("/questions/create") do %>
+                        <%# ニックネーム %>
+                        <% if @current_user %>
+                            <%# user_id　非表示 %>
+                            <div class="form-group m-0">
+                                <input class="form-control" name="user_id" id="user_id" type="hidden" value="<%= @user.id %>" readonly="readonly">
+                            </div>
+                            <div class="form-group mt-0 w-50">
+                                <input class="form-control" name="name"  id="name" type="text" value="<%= @current_user.name %>" readonly="readonly">
+                            </div>
+                        <% else %>
+                            <div class="form-group mt-0 w-50">
+                                <input class="form-control" name="name"  id="name" type="text" placeholder="ニックネーム(ゲスト)">
+                            </div>
+                        <% end %>
+                        <div class="form-group mt-0 mb-2 mb-sm-3">
+                            <textarea class="form-control form-comment" name="comment" id="comment" placeholder="コメント" required="required"></textarea>
+                        </div>
+                        <%# 投稿ボタン %>
+                        <div class="d-flex justify-content-end mb-2 mb-md-0">
+                            <a href="#" class="comment-btn btn btn-sm btn-raised btn-light" style="border:1px solid;">キャンセル</a>
+                            <button type="submit" value="投稿" class="ml-2 comment-btn btn btn-sm btn-raised btn-light" style="border:1px solid">投稿</button>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <%# コメント欄 %>
+        <% if @questions.size > 0 %>
+            <% @questions.each do |comment| %>
+                <div class="row border-top">
+                    <div class="comment col-10 pl-md-4 pl-3 pt-md-3 pt-2 pb-1" style="word-wrap: break-word;">
+                    <div class="d-flex">
+                        <% if comment.user_id.nil? %>
+                            <h6 class="mb-1 mb-md-2"><%= comment.id %>.<%= comment.name %><span class="text-black-50">：<br class="d-block d-md-none"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
+                        <% else %>
+                            <h6 class="mb-1 mb-md-2"><%= comment.id %>.<%= link_to("#{comment.name}", "/users/#{comment.user_id}") %>
+                            <span class="text-black-50">：<br class="d-block d-md-none"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></span></h6>
+                        <% end %>
+                    </div>
+                    <h4 class="comment-content"><%= safe_join(comment.comment.split("\n"), tag(:br)) %></h4>
+                    </div>
+                    <% if (@current_user && @current_user.id == comment.user_id) or comment.user_id.nil? %>
+                    <div class="p-0 col-2 d-flex align-items-end">
+                        <%= link_to("　削除　", "/questions/#{comment.id}/destroy", class: "d-none d-lg-inline-block btn btn-outline-primary align-self-center", method: "post") %>
+                        <%# link_to("　削除　", "/questions/#{comment.id}/destroy", class: "d-inline-block d-lg-none btn btn-sm btn-outline-primary align-self-center", method: "post") %>
+                        <%= link_to("削除", "/questions/#{comment.id}/destroy", class: "d-inline-block d-lg-none delete-btn", method: "post") %>
+                    </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% else %>
+            <div class="row border-top pt-3">
+                <h3 class="comment-content col-12">コメントなし</h3>
+            </div>
+        <% end %>
+    </div>
+</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    // collapseが閉じてる時
+    $(".close-btn").on('hidden.bs.collapse click ', function() {
+        $(".collapse-close").collapse('show');
+        // $(".collapse-close").fadeToggle();
+    });
+
+    // collapseが開いてる時
+    $(".close-btn").on('shown.bs.collapse click ', function() {
+        $(".collapse-close").collapse('hide');
+        // $(".collapse-close").fadeToggle();
+    });
+</script>

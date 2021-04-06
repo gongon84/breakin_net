@@ -1,0 +1,39 @@
+<%# 使い方 %>
+<div class="container" style="height:100%;">
+
+  <%# アカウントについて %>
+  <div class="about-wrap about-account">
+    <h1>アカウントについて</h1>
+    <p class="border-title"></p>
+    <div class="about-group d-flex justify-content-sm-start">
+      <%# アカウント %>
+      <%= link_to('アカウント・ログインについて', "/about/account", class: "font-italic") %>
+    </div>
+  </div>
+
+  <%# サービスについて %>
+  <div class="about-wrap about-service">
+    <h1>機能について</h1>
+    <p class="border-title"></p>
+    <div class="about-group d-sm-flex justify-content-sm-start">
+      <%# レッスン %>
+      <%= link_to('レッスン情報がわかる', "/wait", class: "font-italic") %>
+      <%# 練習場所 %>
+      <%= link_to('練習場所の検索', "/wait", class: "font-italic") %>
+      <%# ムーブ %>
+      <%= link_to('技やムーブの管理', "/wait", class: "font-italic") %>
+    </div>
+  </div>
+
+  <%# その他 %>
+  <div class="about-wrap about-other">
+    <h1>その他</h1>
+    <p class="border-title"></p>
+    <div class="about-group d-sm-flex justify-content-sm-start">
+      <%# 質問スレッド %>
+      <%= link_to('なんでも質問スレッド', "/about/question", class: "font-italic") %>
+      <%# 質問スレッド %>
+      <%= link_to('追加予定の機能', "/wait", class: "font-italic") %>
+    </div>
+  </div>
+</div>

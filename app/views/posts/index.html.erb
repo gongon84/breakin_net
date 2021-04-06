@@ -1,0 +1,129 @@
+<%# Collapse %>
+<div class="pref-wrap container-lg mt-5">
+  <div class="text-center mb-5" style="width:100%;">
+    <h1>都道府県</h1>
+  </div>
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            北海道・東北 (<%= @area0 %>)
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <nav class="nav">
+            <% @areas[0].each do |pref| %>
+              <% table_size = @post.where(pref: pref).size %>
+              <%= link_to("#{pref}　(#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            関東 (<%= @area1 %>)
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <nav class="nav">
+            <% @areas[1].each do |pref| %>
+              <% table_size = @post.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingFour">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            中部 (<%= @area2 %>)
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+        <div class="card-body">
+          <nav class="nav">
+            <% @areas[2].each do |pref| %>
+              <% table_size = @post.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingFive">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            近畿 (<%= @area3 %>)
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+        <div class="card-body">
+          <nav class="nav">
+            <% @areas[3].each do |pref| %>
+              <% table_size = @post.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingSix">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            中国・四国 (<%= @area4 %>)
+          </button>
+        </h5>
+      </div>
+      <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+        <div class="card-body">
+          <nav class="nav">
+            <% @areas[4].each do |pref| %>
+              <% table_size = @post.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingSeven">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            九州・沖縄 (<%= @area5 %>)
+          </button>
+        </h5>
+      </div>
+      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+        <div class="card-body">
+          <nav class="nav">
+            <% @areas[5].each do |pref| %>
+              <% table_size = @post.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingEight">
+        <h5 class="mb-0">
+          <%= link_to("なんでも質問スレッド（質問や要望はこちらへ）", "/questions/index", class: "nav-link") %>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
