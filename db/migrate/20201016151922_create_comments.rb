@@ -1,6 +1,6 @@
-class CreateUsers < ActiveRecord::Migration[6.0]
+class CreateComments < ActiveRecord::Migration[6.0]
   def change
-    create_table :users do |t|
+    create_table :comments do |t|
       t.references :post, foreign_key: true
       t.string :pref
       t.string :place

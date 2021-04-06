@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_122343) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "pref"
     t.string "place"
     t.string "station"
@@ -51,10 +52,9 @@ ActiveRecord::Schema.define(version: 2020_12_11_122343) do
     t.string "price"
     t.string "tag"
     t.string "memo"
+    t.string "image_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image_name"
-    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 2020_12_11_122343) do
     t.string "email"
     t.string "url"
     t.string "profile"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "image_name"
     t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "comments", "posts"
