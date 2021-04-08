@@ -1,6 +1,15 @@
 <%# 掲示板 %>
 <div class="question-wrap container">
-<h1 class="text-center">なんでも質問スレッド</h1>
+<h1 class="text-center">交流の場</h1>
+<h3 class="mb-3">
+    bboyが集うコミュニティです。<br>匿名でもコメントできます。<br><br>
+    ＜使い道＞<br>
+    ・好きなbboyやバトルについて語る<br>
+    ・曲名がわからない曲を質問する<br>
+    ・一緒に大会に出るメンバーを募集する<br>
+    など<br><br>
+</h3>
+
 <div class="borad card">
     <div class="card-body pb-0">
         <%# コメント入力欄%>
@@ -68,13 +77,14 @@
             <% end %>
         <% else %>
             <div class="row border-top pt-3">
-                <h3 class="comment-content col-12">コメントなし</h3>
+                <h3 class="comment-content col-12">まだコメントはありません</h3>
             </div>
         <% end %>
     </div>
-</div>
+</div>  
 </div>
 
+<%# Javascript %>
 <script language="javascript" type="text/javascript">
     // collapseが閉じてる時
     $(".close-btn").on('hidden.bs.collapse click ', function() {

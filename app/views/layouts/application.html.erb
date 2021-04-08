@@ -56,7 +56,12 @@
             </li>
             <%# なんでも質問スレッド %>
             <li class="nav-item <%= 'active' if controller.controller_name == 'questions' && controller.action_name == 'index' %>">
-              <%= link_to('質問スレッド', "/questions/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
+              <%= link_to('交流の場', "/questions/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
+            </li>
+            <%# お問い合わせ google form%>
+            <li class="nav-item <%# 'active' if controller.controller_name == 'questions' && controller.action_name == 'index' %>">
+              <%# link_to('質問スレッド', "/questions/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
+              <%= link_to("お問い合わせ",  "https://forms.gle/cbzRcpwd4NNm2AVr9", target: "blank", class: "nav-link font-italic ml-sm-3 ml-1") %>
             </li>
           </ul>
         </div>
