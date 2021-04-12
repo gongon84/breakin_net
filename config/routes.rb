@@ -35,17 +35,19 @@ Rails.application.routes.draw do
   post "/comments/create" => "comments#create"
   post "/comments/:pref/:place/:id/destroy" => "comments#destroy"
 
-  # ユーザー
+  # ユーザー　sorcery
   get 'users/index' => "users#index"
-  get 'users/signup' => "users#new"
-  get "users/table" => "users#table"
-  get "users/login" => "users#login_form"
-  post "users/login" => "users#login"
-  post "users/logout" => "users#logout"
-  get "users/:id" => "users#show"
-  post 'users/create' => "users#create"
+  get 'users/table' => "users#table"
+  get '/users/new' => "users#new"
+  post '/users/create' => "users#create"
+  get '/users/:id' => "users#show"
   get "users/:id/edit" => "users#edit"
-  post "users/:id/update" => "users#update"
+  post 'users/update' => "users#update"
+
+   # user_sessions
+   get '/login' => 'user_sessions#new'
+   post '/login' => 'user_sessions#create'
+   post '/logout' => 'user_sessions#destroy'
 
   # ムーブ
   get 'moves/index' => "moves#index"

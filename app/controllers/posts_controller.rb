@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenicate_user, {only: [:new, :create, :edit, :update, :destroy, ]}
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @areas = [
@@ -39,14 +39,13 @@ class PostsController < ApplicationController
 
   def new
     @pref = params[:pref]
-    @user = User.find_by(id: session[:user_id])
   end
 
   def create
     @pref = params[:pref]
-    @post = Post.new(user_id: params[:user_id], pref: params[:pref], place: params[:place], station: params[:station], 
+    @post = Post.new(user_id: current_user.id, pref: params[:pref], place: params[:place], station: params[:station], 
       facility: params[:facility], time: params[:time], price: params[:price], tag: params[:tag])
-    if @post.save!
+    if @post.save
       redirect_to("/posts/#{@pref}", notice: "#{@post.place}を登録しました")
     else
       render("posts/new")

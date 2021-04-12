@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-
-  before_action :authenicate_user, {only: [:edit, :update]}
-
+  before_action :require_login, only: [:edit, :update]
+  
   def index
-    @users = User.all
   end
 
   def show
@@ -13,25 +11,26 @@ class UsersController < ApplicationController
     @like = Like.where(user_id: @user.id)
   end
 
-  def table
+  def table  # ユーザー検索ページ
     if params[:serch_user]
       @users = User.where('name LIKE ?', "%#{params[:serch_user]}%").page(params[:page]).per(5).order(updated_at: :desc)
     else
       @users = User.all.page(params[:page]).per(20).order(updated_at: :desc)
     end
   end
-
-  def new
+  
+  def new  # 新規登録ページ
+    # エラーメッセージで@userを使うため
     @user = User.new
   end
 
   def create
-    @user = User.new(name: params[:name], email: params[:email], password: params[:password], profile: "よろしくお願いします")
+    @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to("/users/#{@user.id}", notice: "ユーザー登録が完了しました")
+      redirect_to("/users/index", notice: '登録しました')
     else
-      render("users/new")
+      flash.now[:alert] = '登録に失敗しました'
+      render 'users/new'
     end
   end
 
@@ -40,35 +39,31 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.url = params[:url]
-    @user.profile = params[:profile]
-    if @user.save
-      redirect_to("/users/#{@user.id}", notice: "編集が完了しました")
+    @user = current_user
+    if @user.update(user_profile_params)
+      redirect_to("/users/#{@user.id}", notice: '編集しました')
     else
-      render("users/edit")
+      render 'users/edit'
     end
   end
 
-  def login_form
+
+  private
+
+  def user_params
+    params.permit(
+      :name,
+      :email,
+      :password,
+      :password_confirmation,
+    )
   end
 
-  def login
-    @user = User.find_by(email: params[:email])
-    # パスワードを暗号化して一致の確認
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect_to("/users/#{@user.id}", notice: "ログインしました")
-    else
-      @error_message = "メールアドレスまたはパスワードが間違っています"
-      render("users/login_form")
-    end
-  end
-
-  def logout
-    session[:user_id] = nil
-    redirect_to("/users/index", notice: "ログアウトしました")
+  def user_profile_params
+    params.permit(
+      :name,
+      :profile,
+      :url,
+    )
   end
 end

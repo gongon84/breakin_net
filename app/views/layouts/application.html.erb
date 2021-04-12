@@ -31,10 +31,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav nav mt-md-2 ml-sm-5">
-            <% if @current_user %>
+            <% if current_user %>
               <%# アカウント %>
               <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'show' %>">
-                <%= link_to("#{@current_user.name}", "/users/#{@current_user.id}", class: "nav-link font-italic ml-sm-3 ml-1") %>
+                <%= link_to("#{current_user.name}", "/users/#{current_user.id}", class: "nav-link font-italic ml-sm-3 ml-1") %>
               </li>
             <% else %>
               <%# ログイン %>

@@ -117,7 +117,7 @@
           <div class="form-group">
               <input class="form-control" name="skill3" id="skill3" type="text" placeholder="技３">
           </div>
-          <% if @current_user && @user.id == @current_user.id %>
+          <% if current_user && current_user.id == @user.id %>
             <button type="submit" value="追加" class="btn btn-raised btn-primary">技　追加</button>
           <% else %>
             <button disabled value="追加" class="btn btn-raised btn-primary mb-3">技　追加</button>
@@ -145,14 +145,14 @@
           <div class="form-group">
               <input class="form-control" name="limit3" id="limit3" type="text" placeholder="条件３">
           </div>
-          <% if @current_user && @user.id == @current_user.id %>
+          <% if current_user && current_user.id == @user.id %>
             <button type="submit" value="追加" class="btn btn-raised btn-primary">条件　追加</button>
           <% else %>
             <button disabled value="追加" class="btn btn-raised btn-primary mb-3">条件　追加</button>
           <% end %>
         <% end %>
       </div>
-      <% unless @current_user && @user.id == @current_user.id %>
+      <% unless current_user && current_user.id == @user.id %>
         <div class="col-12 py-3">
           <h3>※追加にはアカウントが必要です</h3>
         </div>
@@ -160,7 +160,7 @@
     </div>
 
     <%# 編集・削除ボタン %>
-    <% if @current_user && @user.id == @current_user.id %>
+    <% if current_user && current_user.id == @user.id %>
       <div class="row mt-5">
         <%# 編集 %>
         <div class="col-12 mb-2">

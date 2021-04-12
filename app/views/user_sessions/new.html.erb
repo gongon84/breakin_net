@@ -1,0 +1,25 @@
+<%# ログイン画面 %>
+
+<%# フラッシュ　投稿追加 %>
+<% if flash[:alert] %>
+  <div class="alert alert-success m-0" role="alert">
+    <h3><%= flash[:alert] %></h3>
+  </div>
+<% end %>
+
+<div class="user-login container pb-5">
+<h3 class="mt-5">ログイン画面</h3>
+  <%= form_with url: "/login", local: true, method: 'POST', class: "mt-3" do |f| %>
+    <div class="my-2">
+      <h5><%= f.label :email, 'メールアドレス' %></h5>
+      <%= f.text_field :email, class: "py-1"  %>
+    </div>
+
+    <div class="my-2">
+      <h5><%= f.label :password, 'パスワード' %></h5>
+      <%= f.password_field :password, class: "py-1" %>  
+    </div>
+
+    <%= f.submit "ログイン", class: "submit-btn" %>        
+  <% end %>
+</div>

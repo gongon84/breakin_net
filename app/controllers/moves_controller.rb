@@ -1,5 +1,5 @@
 class MovesController < ApplicationController
-  before_action :authenicate_user, {only: [:new, :create, :skill_create, :limit_create]}
+  before_action :require_login, only: [:new, :create, :skill_create, :limit_create]
 
   def index
     @move = Move.all.order(updated_at: :desc)

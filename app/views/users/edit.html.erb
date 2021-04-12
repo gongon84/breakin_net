@@ -1,29 +1,35 @@
+<div class="user-edit">
+
+<%# エラーメッセージ %>
+<% @user.errors.full_messages.each do |message| %>
+    <div class="form-error">
+        <h2 class="text-danger"><%= message %></h2>
+    </div>
+<% end %>
+
 <div class="container">
+    <h3 class="mt-5 mb-4">編集画面</h3>
+    <%= form_with url: "/users/update", local: true, method: 'POST' do |f| %>
 
-    <!-- エラーメッセージを表示するためのHTMLを貼り付けてください -->
-    <% @user.errors.full_messages.each do |message| %>
-        <div class="form-error">
-            <%= message %>
+        <div class="my-2">
+            <h5><%= f.label :name, '名前' %></h5>
+            <%= f.text_field :name, value: @user.name, class: "py-1" %>
+        </div>
+
+        <div class="my-2">
+            <h5><%= f.label :profile, 'プロフィール' %></h5>
+            <%= f.text_area :profile, value: @user.profile, class: "profile-form py-1"%>
+        </div>
+
+        <div class="my-2">
+            <h5><%= f.label :url, 'URL' %></h5>
+            <%= f.text_field :url, value: @user.url, class: "py-1" %>
+        </div>
+        
+            
+        <div class="my-2">        
+            <%= f.submit "編集", class: "submit-btn" %>
         </div>
     <% end %>
-
-    <%= form_tag "/users/#{@user.id}/update" do %>
-        <div class="form-group">
-            <label for="title">ユーザー名</label>
-            <input class="form-control" name="name" id="name" type="text" value="<%= @user.name %>">
-        </div>
-        <div class="form-group">
-            <label for="email">メールアドレス</label>
-            <input class="form-control" name="email" id="email" type="text" value="<%= @user.email %>">
-        </div>
-        <div class="form-group">
-            <label for="url">URL</label>
-            <input class="form-control" name="url"  id="url" type="text" value="<%= @user.url %>">
-        </div>
-        <div class="form-group">
-            <label for="profile">自己紹介</label>
-            <textarea class="form-control" name="profile"  id="profile" style="height:100px;"><%= @user.profile %></textarea>
-        </div>
-        <button type="submit" value="編集" class="btn btn-raised btn-primary">編集</button>
-    <% end %>
+</div>
 </div>

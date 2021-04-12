@@ -78,3 +78,6 @@ gem 'cloudinary'
 
 # パスワードのハッシュ化
 gem 'bcrypt'
+
+# アカウント機能
+gem 'sorcery'

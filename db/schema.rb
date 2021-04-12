@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_122343) do
+ActiveRecord::Schema.define(version: 2020_12_11_032313) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -68,14 +68,16 @@ ActiveRecord::Schema.define(version: 2020_12_11_122343) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "crypted_password"
+    t.string "salt"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "email"
     t.string "url"
     t.string "profile"
     t.string "image_name"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "comments", "posts"

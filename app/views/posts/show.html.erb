@@ -72,7 +72,7 @@
             <%= image_tag "/assets/default.png", height: "400px",alt: "デフォルト" %>
           <% end %>
           <br>
-          <% if @current_user && @user.id == @current_user.id %>
+          <% if current_user && @user.id == current_user.id %>
             <%= link_to("　追加　", "/posts/#{@pref}/#{@place}/editImage", class: "d-none d-md-inline-block btn btn-light border") %>
             <%= link_to("　削除　", "/posts/#{@pref}/#{@place}/defaultImage", class: "d-none d-md-inline-block btn btn-light border ml-2", 
             method: "post", data: {confirm: '【確認】この画像を削除してよろしいですか？'}) %>
@@ -92,7 +92,7 @@
         </div>
       </div>
       <%# 編集・削除ボタン %>
-      <% if @current_user && @user.id == @current_user.id %>
+      <% if current_user && @user.id == current_user.id %>
         <div class="row card-body pt-0">
           <div class="col-12 col-md-12 d-flex justify-content-end">
             <%= link_to("　編集　", "/posts/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
@@ -138,7 +138,7 @@
                   <input class="form-control" name="place" id="place" type="hidden" value="<%= @place %>" readonly="readonly">
                 </div>
                 <%# ニックネーム %>
-                <% if @current_user %>
+                <% if current_user %>
                   <div class="form-group mt-0 w-50">
                     <input class="form-control" name="name"  id="name" type="text" value="<%= @user.name %>" readonly="readonly">
                   </div>
