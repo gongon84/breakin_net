@@ -81,3 +81,8 @@ gem 'bcrypt'
 
 # アカウント機能
 gem 'sorcery'
+
+# 開発環境でメール受信を確認できる
+group :development do
+  gem 'letter_opener_web'
+end

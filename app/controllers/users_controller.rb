@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to("/users/index", notice: '登録しました')
+      redirect_to("/users/index", notice: 'メールを送信しました。そちらからログインください')
     else
       flash.now[:alert] = '登録に失敗しました'
       render 'users/new'
@@ -44,6 +44,17 @@ class UsersController < ApplicationController
       redirect_to("/users/#{@user.id}", notice: '編集しました')
     else
       render 'users/edit'
+    end
+  end
+
+  # メール認証　アクション
+  def activate
+    # アクセストークンの認証
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.activate!
+      redirect_to(login_path, :notice => '登録が完了しました')
+    else
+      not_authenticated
     end
   end
 

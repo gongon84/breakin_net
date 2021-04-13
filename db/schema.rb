@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_032313) do
+ActiveRecord::Schema.define(version: 2021_04_13_032525) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -77,6 +77,10 @@ ActiveRecord::Schema.define(version: 2020_12_11_032313) do
     t.string "url"
     t.string "profile"
     t.string "image_name"
+    t.string "activation_state"
+    t.string "activation_token"
+    t.datetime "activation_token_expires_at"
+    t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

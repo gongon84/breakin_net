@@ -69,4 +69,16 @@ Rails.application.routes.draw do
   get "maps/index" => "maps#index"
 
   root "home#top"
+
+  # メール認証　acrivate呼び出し
+  resources :users do
+    member do
+      get :activate
+    end
+  end
+
+  # letter_opener_webの使用 下記のURLで確認できる
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
