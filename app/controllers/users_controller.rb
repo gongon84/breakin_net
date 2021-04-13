@@ -26,7 +26,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    logger.debug('createの中に入りました')
     if @user.save
+      logger.debug('if文の中に入りました')
       UserMailer.activation_needed_email(@user).deliver_now
       redirect_to("/users/index", notice: 'メールを送信しました。そちらからログインください')
     else
