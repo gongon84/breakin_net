@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
   def activation_needed_email(user)
     @user = user
     # @url = "http://localhost:3000/users/#{user.activation_token}/activate"
-    @url = "https://breakin-net.herokuapp.com/login"
+    @url = "https://breakin-net.herokuapp.com/users/#{user.activation_token}/activate"
     mail(:to => user.email,
       :subject => "【Breakin Net】登録のご確認")
   end

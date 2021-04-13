@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       logger.debug('save成功しました')
-      UserMailer.activation_needed_email(@user).deliver_now
+      # UserMailer.activation_needed_email(@user).deliver_now
       redirect_to("/users/index", notice: 'メールを送信しました。そちらからログインください')
     else
       logger.debug('save失敗しました')
