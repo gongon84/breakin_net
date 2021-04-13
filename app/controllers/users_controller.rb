@@ -26,12 +26,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    logger.debug('createの中に入りました')
     if @user.save
-      logger.debug('if文の中に入りました')
+      logger.debug('save成功しました')
       UserMailer.activation_needed_email(@user).deliver_now
       redirect_to("/users/index", notice: 'メールを送信しました。そちらからログインください')
     else
+      logger.debug('save失敗しました')
       flash.now[:alert] = '登録に失敗しました'
       render 'users/new'
     end
@@ -55,6 +55,7 @@ class UsersController < ApplicationController
     # アクセストークンの認証
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
+      UserMailer.activation_success_email(@user).deliver_now
       redirect_to(login_path, :notice => '登録が完了しました')
     else
       not_authenticated
