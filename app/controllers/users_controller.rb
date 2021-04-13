@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      UserMailer.activation_needed_email(@user).deliver_now
       redirect_to("/users/index", notice: 'メールを送信しました。そちらからログインください')
     else
       flash.now[:alert] = '登録に失敗しました'
