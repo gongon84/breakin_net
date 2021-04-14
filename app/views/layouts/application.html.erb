@@ -39,7 +39,7 @@
             <% else %>
               <%# ログイン %>
               <li class="nav-item <%= 'active' if controller.controller_name == 'users' && controller.action_name == 'index' %>">
-                <%= link_to('アカウント', "/users/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
+                <%= link_to('マイページ', "/users/index", class: "nav-link font-italic ml-sm-3 ml-1") %>
               </li>
             <% end %>
             <%# 使い方 %>
