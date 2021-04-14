@@ -1,3 +1,49 @@
-// Place all the styles related to the user_sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+// showページ
+.user-post {
+
+    // navバー
+    // 通常時
+    & .nav-item {
+        color: grey;
+        background-color: white;
+    }
+
+    // hover
+    & .nav-item:hover {
+        color: #39A2F2;
+    }
+
+    // activeの部分
+    & .nav-tabs .nav-link.active, .nav-tabs .show > .nav-link {
+        color: #39A2F2;
+        border-bottom: 2px solid #39A2F2;
+    }
+}
+
+
+// スマホデバイス（タブレット, 600px 未満）
+@media (max-width: 600px) {
+
+    // indexページ
+    .account-home {
+        & h4 {
+            font-size: 1rem;
+        }
+    }
+
+    // tableページ
+    .user-table {
+        & h4 {
+            font-size: 1rem; 
+        }
+
+        & h6 {
+            font-size: 0.8rem; 
+        }
+    }
+
+    // showページ
+    .user-link {
+        font-size: 0.8rem;
+    }
+}
