@@ -10,6 +10,7 @@ class UserMailer < ApplicationMailer
   # 登録確認メール
   def activation_needed_email(user)
     @user = user
+    @form = "https://forms.gle/cbzRcpwd4NNm2AVr9"
     if Rails.env.development?
       @url = "http://localhost:3000/users/#{user.activation_token}/activate"
     else
@@ -27,7 +28,7 @@ class UserMailer < ApplicationMailer
   # 登録完了メール
   def activation_success_email(user)
     @user = user
-    @url = "http://localhost:3000/login"
+    @form = "https://forms.gle/cbzRcpwd4NNm2AVr9"
     mail(:to => user.email,
     :subject => "【Breakin Net】登録完了のお知らせ")
   end
