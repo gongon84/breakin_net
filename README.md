@@ -12,7 +12,8 @@ https://breakin-net.herokuapp.com
 ○ Heroku  
 
 # 機能
-○ ユーザー登録、ログイン機能  
+○ ユーザー登録、ログイン機能(sorcery)  
+　・メール認証(Action Mailer)  
 ○ 投稿機能  
 　・ レッスン、練習場所、技の情報  
 　・ 画像投稿(Carrierwave)  
@@ -20,4 +21,6 @@ https://breakin-net.herokuapp.com
 ○ コメント機能  
 ○ いいね機能  
 ○ ページネーション機能(kaminari)  
-○ 検索機能
+○ 検索機能  
+○ お問い合わせ機能(google form)  
+　・GASとLINE Notifyで自動通知
