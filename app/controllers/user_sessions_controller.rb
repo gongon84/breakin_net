@@ -16,4 +16,11 @@ class UserSessionsController < ApplicationController
       logout
       redirect_to('/users/index', notice: 'ログアウトしました')
     end
+
+    # ゲストログイン
+    def guest_login
+      guest_user = User.find_by(guest: true)
+      auto_login(guest_user)
+      redirect_back_or_to("/users/#{guest_user.id}", notice: 'ログインしました')
+    end
 end

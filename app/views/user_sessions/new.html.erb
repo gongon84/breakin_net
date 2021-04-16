@@ -23,3 +23,13 @@
     <%= f.submit "ログイン", class: "submit-btn" %>        
   <% end %>
 </div>
+
+
+<%# ゲストログイン　試し %>
+<div class="user-login container pb-5">
+  <h3 >お試しで使用してください</h3>
+  <h4>※ベータ版でのみご利用できます。</h4>
+  <%= form_with url: "/guest_login", local: true, method: 'POST', class: "mt-3" do |f| %>
+    <%= f.submit "ゲストログイン", class: "submit-btn" %>   
+  <% end %>
+</div>

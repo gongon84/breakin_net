@@ -1,3 +1,11 @@
+user = User.new(
+    email: 'guest@example.com',
+    name: 'ゲストアカウント',
+    guest: true
+)
+user.save(validate: false)
+
+
 # Post.create!(
 #     pref: "東京都",
 #     place: "小豆沢体育館",
