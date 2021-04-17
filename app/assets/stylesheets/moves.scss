@@ -41,8 +41,7 @@
         }
 
         & .roulette-wrap {
-            border: 5px solid black;
-            padding: 50px 0;
+            // border: 5px solid black;
             margin: 0px 150px 40px 150px;
             border-radius: 100px;
         }
@@ -99,20 +98,24 @@
                 // 光るアニメーションの場合
                 margin: 20px auto;
                 & h1 {
-                    width: 80%;
+                    width: 90%;
                     margin-top: 20px;
                     padding: 10px;
-                    font-size: 1.4rem;
-                }
-
-                .neon {
-                    padding: 15px;
+                    font-size: 1.5rem;
+                    text-shadow    :
+                    1px  1px 0px #000000,
+                    -1px  1px 0px #000000,
+                     1px -1px 0px #000000,
+                    -1px -1px 0px #000000,
+                     1px  0px 0px #000000,
+                     0px  1px 0px #000000,
+                    -1px  0px 0px #000000,
+                     0px -1px 0px #000000; 
                 }
             }
             
             & .roulette-wrap {
-                border: 5px solid black;
-                padding: 20px 0;
+                border: none;
                 margin: 20px 10px;
                 border-radius: 80px;
             }
@@ -129,6 +132,7 @@
                 font-size: 1rem;
                 width: 40%;
                 margin: 20px 0;
+                border:2px solid black;
             }
         }
     }

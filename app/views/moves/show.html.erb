@@ -30,7 +30,7 @@
     <%# タイトル %>
     <div class="text-center p-2 p-md-5">
       <div class="name-title">
-        <h1 class="neon"><%= @move.title %></h1>
+        <h1><%= @move.title %></h1>
       </div>
       <h3 style="color:black;">作成者：<%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:black;") %></h3>
     </div>
