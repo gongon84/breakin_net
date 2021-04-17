@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :moves, dependent: :delete_all
   has_many :likes, dependent: :delete_all
   has_many :questions, dependent: :delete_all
+  has_many :lessons, dependent: :delete_all
 
   # バリデーション
   validates :name, uniqueness: true, presence: true

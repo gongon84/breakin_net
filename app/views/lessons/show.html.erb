@@ -1,0 +1,67 @@
+<div class="container">
+    <%# 戻るボタン %>
+    <%= link_to '戻る', "/lessons/#{@pref}", class: "btn btn-outline-primary mt-md-5 mt-3" %>
+
+    <div class="creat-time mt-5 ml-2">
+      <h6>作成者：<%= link_to("#{@user.name}", "/users/#{@user.id}") %></h6>
+      <h6 >作成日：<%= @lesson.created_at.strftime('%Y/%m/%d') %></h6>
+      <time datetime="<%= @lesson.updated_at %>">
+        <h6 >更新　：<%= time_ago_in_words(@lesson.updated_at) %>前</h6>
+      </time>
+    </div>
+
+    <%# 場所名 %>
+    <div class="page-title text-center mb-4 mt-5 mb-md-5">
+        <h1><%= "#{@lesson.place}" %></h1>
+    </div>
+
+
+    <%# 詳細 %>
+    <div class="card my-3">
+      
+      <%# 場所データ %>
+      <div class="row card-body border-bottom">
+        <div class="show-card-down col-12 p-md-3" style="word-wrap: break-word;">
+            <h4 class="ml-md-3"><span class="text-secondary">最寄り：</span><%= @lesson.station %></h4>
+            <h4 class="ml-md-3 card-text"><span class="text-secondary">時間　：</span><%= @lesson.time %></h4>
+            <h4 class="ml-md-3 card-text"><span class="text-secondary">料金　：</span><%= @lesson.price %>円</h4>
+            <h4 class="ml-md-3 card-text"><span class="text-secondary">リンク：</span>
+              <%= link_to("#{@lesson.url}", @lesson.url, target: :_blank) %>
+            </h4>
+        </div>
+      </div>
+      <%# メモ %>
+      <div class="row card-body border-bottom">
+        <div class="profile-card col-md-11 ml-md-3">
+          <h3>＜詳細＞</h3>
+          <% if @lesson.profile %>
+            <h4><%= safe_join(@lesson.profile.split("\n"), tag(:br)) %></h4>
+          <% else %>
+            <h4><%= @lesson.profile %></h4>
+            <p></p>
+            <p></p>
+          <% end %>
+        </div>
+      </div>
+      <%# 画像作成予定 %>
+      </div>
+      <%# 編集・削除ボタン %>
+      <% if current_user && @user.id == current_user.id %>
+        <div class="row card-body pt-0">
+          <div class="col-12 col-md-12 d-flex justify-content-end">
+            <%= link_to("　編集　", "/lessons/#{@pref}/#{@place}/edit", class: "d-none d-md-inline-block btn btn-outline-primary") %>
+            <%= link_to("　削除　", "/lessons/#{@pref}/#{@place}/destroy", class: "d-none d-md-inline-block btn btn-outline-primary ml-2", 
+            method: "lesson", data: {confirm: "【確認】#{@place}を削除してよろしいですか？"}) %>
+            <%= link_to("　編集　", "/lessons/#{@pref}/#{@place}/edit", class: "d-inline-block d-md-none btn btn-sm btn-outline-primary") %>
+            <%= link_to("　削除　", "/lessons/#{@pref}/#{@place}/destroy", class: "d-inline-block d-md-none btn-sm btn btn-outline-primary ml-2", 
+            method: "lesson", data: {confirm: "【確認】#{@place}を削除してよろしいですか？"}) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%# 掲示板　作成予定 %>
+
+    <%# 利用者 %>
+    <h1 class="text-center py-3 mt-5">よく利用する人</h1>
+</div>

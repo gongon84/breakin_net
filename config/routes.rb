@@ -11,10 +11,20 @@ Rails.application.routes.draw do
   get "/test" => "home#test"
   get "/wait" => "home#wait"
 
-  # 質問スレッド
+  # 交流の場
   get 'questions/index' => "questions#index"
   post 'questions/create' => "questions#create"
   post 'questions/:id/destroy' => "questions#destroy"
+
+  # レッスン
+  get 'lessons/index' => "lessons#index"
+  get '/lessons/:pref' => "lessons#table"
+  get '/lessons/:pref/new' => "lessons#new"
+  post '/lessons/create' => "lessons#create"
+  get "/lessons/:pref/:place" => "lessons#show"
+  get 'lessons/:pref/:place/edit' => "lessons#edit"
+  post 'lessons/update' => "lessons#update"
+  post '/lessons/:pref/:place/destroy' => "lessons#destroy"
 
   # ポスト投稿
   get '/posts/index' => "posts#index"
@@ -25,6 +35,7 @@ Rails.application.routes.draw do
   get "/posts/:pref/:place/edit" => "posts#edit"
   post "/posts/update" => "posts#update"
   post "/posts/:pref/:place/destroy" => "posts#destroy"
+
   # 画像
   get "/posts/:pref/:place/editImage" => "posts#editImage"
   post "/posts/updateImage" => "posts#updateImage"

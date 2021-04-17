@@ -1,0 +1,98 @@
+<%# コンテナ %>
+<div class="container">
+
+  <%# フラッシュ　投稿追加 %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success m-0" role="alert">
+      <h3><%= flash[:notice] %></h3>
+    </div>
+  <% end %>
+
+  <%# 戻る・追加ボタン & 検索 %>
+  <div class="d-sm-flex mt-4 flex-row-reverse">
+    <%# 検索 %>
+    <%= form_tag("/lessons/#{@pref}", method: "get", class: "ml-sm-auto") do %>
+      <div class="form-inline m-0">
+        <input class="form-control" name="pref" id="pref" type="hidden" value="<%= @pref %>" readonly="readonly">
+      </div>
+      <div class="d-flex justify-content-end mb-3 mb-sm-0">
+        <div class="form-serch form-inline-block m-0">
+          <input class="form-control" name="serch_place" id="serch_place" type="text" value="<%= params[:serch_place] %>" placeholder="検索">
+        </div>
+        <button type="submit"　value="検索" class="btn btn-raised btn-outline-primary"><i class="fas fa-search"></i></button>
+      </div>
+    <% end %>
+    <%# 戻る・追加ボタン %>
+    <div class="d-flex">
+      <%= link_to '戻る', "/lessons/index", class: "btn btn-outline-primary" %>
+      <%= link_to '追加', "/lessons/#{@pref}/new", class: "btn btn-outline-primary ml-auto ml-sm-3" %>
+    </div>
+  </div>
+
+
+  <%# ページタイトル %>
+  <div class="page-title text-center my-5">
+      <h1><%= @pref %>　レッスン一覧</h1>
+  </div>
+
+
+  <%# 投稿一覧 %>
+  <%# データがあるとき %>
+  <% if @lesson.where(pref: @pref).size > 0 %>
+    <% @lesson.where(pref: @pref).each do |lesson| %>
+      <div class="card my-3">
+        <div class="row card-body border-bottom">
+          <div class="table-card-up col-md-5 col-12 px-md-3">
+            <time datetime="<%= lesson.updated_at %>">
+              <h6 class="ml-md-3"><%= time_ago_in_words(lesson.updated_at) %>前</h6>
+            </time>
+            <h2 class="card-title ml-md-3"><%= lesson.place %></h2>
+            <h4 class="ml-md-3 my-md-3"><span class="text-secondary">最寄り：</span><%= lesson.station %></h4>
+            <%= link_to("詳しく見る", "/lessons/#{@pref}/#{lesson.place}", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+            <%# いいね作成予定 %>
+          </div>
+          <div class="table-card-down col-md-7 col-12 px-md-3 pt-md-4" style="word-wrap: break-word;">
+            <h4 class="card-text">時間：<%= lesson.time %></h4>
+            <h4 class="card-text">料金：<%= lesson.price %>円</h4>
+            <%= link_to("詳しく見る", "/lessons/#{@pref}/#{lesson.place}", class: "btn btn-outline-primary mt-1 d-md-none d-inline-block") %>
+            <%# いいね 作成予定%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%# データがないとき %>
+    <div class="no-regi text-center my-5 py-sm-5">
+      <h1>ーーーまだ何も登録されていません。ーーー</h1>
+    </div>
+
+    <%# 例 %>
+    <p>
+      <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <h5>（例）</h5>
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card my-3">
+        <div class="row card-body">
+          <div class="example-card-up col-md-5 col-12 mb-md-0">
+              <h2 class="card-title ml-md-3">〇〇スタジオ</h2>
+              <h4 class="ml-md-3 mb-md-3">最寄り：〇〇駅</h4>
+              <a href="#" class="btn btn-outline-primary ml-md-3 d-md-inline-block d-none">詳しく見る</a>
+          </div>
+          <div class="example-card-down col-md-7 col-12" style="word-wrap: break-word;">
+              <h4 class="card-text">時間：平日：19時〜21時</h4>
+              <h4 class="card-text">料金：1h2000円</h4>
+              <a href="#" class="btn btn-outline-primary mt-1 d-md-none d-inline-block">詳しく見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+  <%# ページネーション %>
+  <div class="paginate" style="text-align: center; margin:0 auto;">
+    <%= paginate @lesson %>
+  </div>

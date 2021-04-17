@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @post = Post.where(user_id: @user.id)
     @move = Move.where(user_id: @user.id)
     @like = Like.where(user_id: @user.id)
+    @lesson = Lesson.where(user_id: @user.id)
   end
 
   def table  # ユーザー検索ページ

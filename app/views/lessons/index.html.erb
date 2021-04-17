@@ -1,7 +1,7 @@
 <%# Collapse %>
 <div class="pref-wrap container-lg mt-5">
   <div class="text-center mb-5" style="width:100%;">
-    <h1>都道府県（練習場）</h1>
+    <h1>都道府県(レッスン)</h1>
   </div>
   <div class="accordion" id="accordionExample">
     <div class="card">
@@ -16,8 +16,8 @@
         <div class="card-body">
           <nav class="nav">
             <% @areas[0].each do |pref| %>
-              <% table_size = @post.where(pref: pref).size %>
-              <%= link_to("#{pref}　(#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+              <% table_size = @lesson.where(pref: pref).size %>
+              <%= link_to("#{pref}　(#{table_size})", "/lessons/#{pref}", class: "nav-link") %>
             <% end %>
           </nav>
         </div>
@@ -35,8 +35,8 @@
         <div class="card-body">
           <nav class="nav">
             <% @areas[1].each do |pref| %>
-              <% table_size = @post.where(pref: pref).size %>
-              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+              <% table_size = @lesson.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/lessons/#{pref}", class: "nav-link") %>
             <% end %>
           </nav>
         </div>
@@ -54,8 +54,8 @@
         <div class="card-body">
           <nav class="nav">
             <% @areas[2].each do |pref| %>
-              <% table_size = @post.where(pref: pref).size %>
-              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+              <% table_size = @lesson.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/lessons/#{pref}", class: "nav-link") %>
             <% end %>
           </nav>
         </div>
@@ -73,8 +73,8 @@
         <div class="card-body">
           <nav class="nav">
             <% @areas[3].each do |pref| %>
-              <% table_size = @post.where(pref: pref).size %>
-              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+              <% table_size = @lesson.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/lessons/#{pref}", class: "nav-link") %>
             <% end %>
           </nav>
         </div>
@@ -92,8 +92,8 @@
         <div class="card-body">
           <nav class="nav">
             <% @areas[4].each do |pref| %>
-              <% table_size = @post.where(pref: pref).size %>
-              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+              <% table_size = @lesson.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/lessons/#{pref}", class: "nav-link") %>
             <% end %>
           </nav>
         </div>
@@ -111,8 +111,8 @@
         <div class="card-body">
           <nav class="nav">
             <% @areas[5].each do |pref| %>
-              <% table_size = @post.where(pref: pref).size %>
-              <%= link_to("#{pref} (#{table_size})", "/posts/#{pref}", class: "nav-link") %>
+              <% table_size = @lesson.where(pref: pref).size %>
+              <%= link_to("#{pref} (#{table_size})", "/lessons/#{pref}", class: "nav-link") %>
             <% end %>
           </nav>
         </div>
