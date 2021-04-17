@@ -69,9 +69,11 @@
                 <div class="move-list d-flex align-items-center col-md-2 col-3 p-2">
                   <h4 class="m-0"><%= move_skill.skill %></h4>
                   <%# 技消す　ボタン %>
-                  <%= link_to("/moves/#{@move.user_id}/#{@move.title}/#{move_skill.skill}/skill_destroy", method: "post",
-                  class: "btn p-0", style: "margin-left: auto;") do %>
-                    <i class="fas fa-times" style="color:red;"></i>
+                  <% if current_user && current_user.id == @user.id %>
+                    <%= link_to("/moves/#{@move.user_id}/#{@move.title}/#{move_skill.skill}/skill_destroy", method: "post",
+                    class: "btn p-0", style: "margin-left: auto;") do %>
+                      <i class="fas fa-times" style="color:red;"></i>
+                    <% end %>
                   <% end %>
                 </div>
               <% end %>
@@ -88,9 +90,11 @@
                 <div class="move-list d-flex align-items-center col-md-2 col-3 p-2">
                   <h4 class="m-0"><%= move_skill.limit %></h4>
                   <%# 技消す　ボタン %>
-                  <%= link_to("/moves/#{@move.user_id}/#{@move.title}/#{move_skill.limit}/limit_destroy", method: "post",
-                  class: "btn p-0", style: "margin-left: auto;") do %>
-                    <i class="fas fa-times" style="color:red;"></i>
+                  <% if current_user && current_user.id == @user.id %>
+                    <%= link_to("/moves/#{@move.user_id}/#{@move.title}/#{move_skill.limit}/limit_destroy", method: "post",
+                    class: "btn p-0", style: "margin-left: auto;") do %>
+                      <i class="fas fa-times" style="color:red;"></i>
+                    <% end %>
                   <% end %>
                 </div>
               <% end %>
