@@ -6,14 +6,10 @@
 // showページ
 .move-maker {
     height: 100%;
-    & .move-list {
-        border: 1px solid black;
-    }
 
     // ルーレットエリア
     & .roulette-area {
-        background-color: black;
-        padding-bottom: 50px;
+        // padding-bottom: 50px;
 
         // タイトル
         & .name-title {
@@ -21,63 +17,60 @@
             // 光るアニメーション
             width: 100%;
             margin: 50px auto;
-            // 背景を画像にする場合
-            // background-image: url("/assets/name_frame.jpg");
-            // background-repeat: no-repeat;
-            // background-size: 70%;
-            // background-position: center;
+            margin-bottom: 0;
+
             & h1 {
                 width: 70%;
                 margin: 0 auto;
                 padding: 20px;
-                color: white;
-                font-size: 4rem;
-                border: 2px solid blue;
+                font-size: 5rem;
+                // https://webparts.cman.jp/string/outline/　を参考
+                display        : inline-block;
+                color          : #528ce9;            /* 文字の色 */
+                letter-spacing : 6px;                /* 文字間 */
+                text-shadow    : 
+                    2px  2px 1px #000000,
+                    -2px  2px 1px #000000,
+                    2px -2px 1px #000000,
+                    -2px -2px 1px #000000,
+                    2px  0px 1px #000000,
+                    0px  2px 1px #000000,
+                    -2px  0px 1px #000000,
+                    0px -2px 1px #000000; 
             }
+        }
 
-            .neon {
-                color: blue;
-                text-shadow: 0 0 35px blue, 0 0 15px blue;
-                box-shadow: 5px 5px 20px;
-                padding: 50px;
-            }
+        & .roulette-wrap {
+            border: 5px solid black;
+            padding: 50px 0;
+            margin: 0px 150px 40px 150px;
+            border-radius: 100px;
         }
 
         // ルーレット
         & .roulette {
             display: inline-block;
             background-color: white;
-            border:1px solid white;
+            border:4px solid black;
             font-size: 2.5rem;
             width: 30%;
             margin: 40px 0;
         }
 
-        // バトル　背景画像
-        & .battle-stage {
-            height: 350px;
-            background-image: url("/assets/stage.jpg");
-            background-repeat: no-repeat;
-            background-size: 70%;
-            background-position: center;
-        }
-        
-        // 勇者
-        & .yusya {
-            height: 60px;
-            width: 8%;
-            margin-top: 120px;
-        }
 
         // ボタン
         & .btn {
             height: 150px;
             width: 150px;
             border-radius: 100%;
-            color: white;
-            border: 2px solid white;
+            color: black;
+            border: 2px solid black;
             font-size: 20px;
         }
+    }
+
+    & .move-list {
+        border: 1px solid black;
     }
 }
 
@@ -107,7 +100,7 @@
                 margin: 20px auto;
                 & h1 {
                     width: 80%;
-                    margin-top: 40px;
+                    margin-top: 20px;
                     padding: 10px;
                     font-size: 1.4rem;
                 }
@@ -116,23 +109,19 @@
                     padding: 15px;
                 }
             }
-
-            // 画像
-            & .battle-stage {
-                height: 200px;
-                background-size: 100%;
+            
+            & .roulette-wrap {
+                border: 5px solid black;
+                padding: 20px 0;
+                margin: 20px 10px;
+                border-radius: 80px;
             }
-
-            & .yusya {
-                margin-top: 70px;
-                width: 10%;
-            }          
 
             & .btn {
                 height: 70px;
                 width: 70px;
                 border-radius: 100%;
-                border: 2px solid white;
+                border: 2px solid black;
                 font-size: 0.7rem;
             }
 

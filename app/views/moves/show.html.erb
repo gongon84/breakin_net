@@ -15,7 +15,8 @@
 <% skill_json = skill_array.to_json.html_safe %>
 <% limit_json = limit_array.to_json.html_safe %>
 
-<%# ムーブメイク %>
+
+<%# moveページ %>
 <div class="move-maker">
   <%# フラッシュ　投稿追加 %>
   <% unless flash[:alert].blank? %>
@@ -31,25 +32,22 @@
       <div class="name-title">
         <h1 class="neon"><%= @move.title %></h1>
       </div>
-      <h3 class="my-4 neon" style="color:white;">作成者：<%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:white;") %></h3>
+      <h3 style="color:black;">作成者：<%= link_to("#{@move.user.name}", "/users/#{@move.user.id}", style: "color:black;") %></h3>
     </div>
 
-    <%# 画像 %>
-    <div class="mb-sm-4 battle-stage d-flex justify-content-around align-items-center">
-        <%= image_tag "/assets/himiko.jpg", alt: "バトル", class: "yusya" %>
-        <%= image_tag "/assets/yusya.jpg", alt: "バトル", class: "yusya" %>
-    </div>
 
     <%# ルーレット　%>
     <div class="outline text-center">
-      <div class="flex">
-        <div class="roulette" id="roulette2">縛り</div>
-        <div class="roulette" id="roulette">技</div>
-      </div>
-      <i class="fa fa-arrow-down fa-3x" style="color: white;"></i>
-      <div class="flex">
-        <div class="roulette" id="roulette4">縛り</div>
-        <div class="roulette" id="roulette3">技</div>
+      <div class="roulette-wrap">
+        <div class="flex">
+          <div class="roulette" id="roulette2">縛り</div>
+          <div class="roulette" id="roulette">技</div>
+        </div>
+        <i class="fa fa-arrow-down fa-3x" style="color: black;"></i>
+        <div class="flex">
+          <div class="roulette" id="roulette4">縛り</div>
+          <div class="roulette" id="roulette3">技</div>
+        </div>
       </div>
       <input name="skill_json" type="hidden" value=<%= skill_json %> class='skill_json'>
       <input name="limit_json" type="hidden" value=<%= limit_json %> class='limit_json'>
@@ -62,7 +60,6 @@
 
   <%# ムーブメイク　後半 %>
   <div class="container" style="background-color: #EEEEEE;">
-
     <%# 技リスト %>
     <div class="skill-list my-5 mx-3 mx-md-0">
         <h2 class="my-4">技リスト</h2>

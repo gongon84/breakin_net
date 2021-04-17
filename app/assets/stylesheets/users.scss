@@ -20,6 +20,18 @@
     }
 }
 
+// editページ
+.user-edit {
+    .profile-form {
+        width: 50%;
+        height: 140px;
+    }
+
+    .url-form {
+        width: 50%;
+    }
+}
+
 
 // スマホデバイス（タブレット, 600px 未満）
 @media (max-width: 600px) {
@@ -45,5 +57,17 @@
     // showページ
     .user-link {
         font-size: 0.8rem;
+    }
+
+    // editページ
+    .user-edit {
+        .profile-form {
+            width: 80%;
+        }
+
+        .url-form {
+            width: 80%;
+            font-size: 0.7rem;
+        }
     }
 }
