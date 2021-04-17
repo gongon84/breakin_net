@@ -69,6 +69,8 @@ Rails.application.routes.draw do
   post "moves/limit_create" => "moves#limit_create"
   post "moves/update" => "moves#update"
   post "moves/:user_id/:title/destroy" => "moves#destroy"
+  post "moves/:user_id/:title/:skill/skill_destroy" => "moves#skill_destroy"
+  post "moves/:user_id/:title/:limit/limit_destroy" => "moves#limit_destroy"
   get "/moves/:user_id/:title/show" => "moves#show"
   get "/moves/:user_id/:title/edit" => "moves#edit"
 

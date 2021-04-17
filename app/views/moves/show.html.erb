@@ -18,10 +18,10 @@
 
 <%# moveページ %>
 <div class="move-maker">
-  <%# フラッシュ　投稿追加 %>
-  <% unless flash[:alert].blank? %>
-    <div class="alert alert-danger m-0" role="alert">
-      <h3><%= safe_join(flash[:alert].join("\n").split("\n"), tag(:br)) %></h3>
+  <%# フラッシュ　表示 %>
+  <% if flash[:alert] %>
+    <div class="alert alert-success m-0" role="alert">
+      <h3><%= flash[:alert] %></h3>
     </div>
   <% end %>  
 
@@ -66,8 +66,13 @@
         <div class="moves row">
             <% @move_skill.each do |move_skill| %>
               <% if move_skill.skill %>
-                <div class="move-list col-md-2 col-3 p-2">
-                  <h4><%= move_skill.skill %></h4>
+                <div class="move-list d-flex align-items-center col-md-2 col-3 p-2">
+                  <h4 class="m-0"><%= move_skill.skill %></h4>
+                  <%# 技消す　ボタン %>
+                  <%= link_to("/moves/#{@move.user_id}/#{@move.title}/#{move_skill.skill}/skill_destroy", method: "post",
+                  class: "btn p-0", style: "margin-left: auto;") do %>
+                    <i class="fas fa-times" style="color:red;"></i>
+                  <% end %>
                 </div>
               <% end %>
             <% end %>
@@ -80,8 +85,13 @@
         <div class="moves row">
             <% @move_skill.each do |move_skill| %>
               <% if move_skill.limit %>
-                <div class="move-list col-md-2 col-3 p-2">
-                    <h4><%= move_skill.limit %></h4>
+                <div class="move-list d-flex align-items-center col-md-2 col-3 p-2">
+                  <h4 class="m-0"><%= move_skill.limit %></h4>
+                  <%# 技消す　ボタン %>
+                  <%= link_to("/moves/#{@move.user_id}/#{@move.title}/#{move_skill.limit}/limit_destroy", method: "post",
+                  class: "btn p-0", style: "margin-left: auto;") do %>
+                    <i class="fas fa-times" style="color:red;"></i>
+                  <% end %>
                 </div>
               <% end %>
             <% end %>
@@ -161,8 +171,8 @@
       <div class="row mt-5">
         <%# 編集 %>
         <div class="col-12 mb-2">
-          <%= link_to("編集", "/moves/#{@move.user_id}/#{@move.title}/edit", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
-          <%= link_to("編集", "/moves/#{@move.user_id}/#{@move.title}/edit", class: "btn btn-outline-primary ml-md-3 d-md-none d-inline-block") %>
+          <%= link_to("タイトルの編集", "/moves/#{@move.user_id}/#{@move.title}/edit", class: "btn btn-outline-primary ml-md-3 d-md-inline-block d-none") %>
+          <%= link_to("タイトルの編集", "/moves/#{@move.user_id}/#{@move.title}/edit", class: "btn btn-outline-primary ml-md-3 d-md-none d-inline-block") %>
         </div>
         <%# 削除 %>
         <div class="col-12">
