@@ -14,6 +14,12 @@
     <h4 class="display-5 mt-sm-5" style="color:white; letter-spacing: 0.1em;">Making Dance More Accessible</h4>
     <%= link_to('サービスを利用する', "/main", class: "btn btn-dark btn-lg text-center py-sm-3 mt-sm-5 mt-3", role: "button") %><br>
     <%= link_to('使い方', "/about", class: "btn btn-dark btn-lg text-center py-sm-3 mt-sm-5 mt-3", role: "button") %><br>
+    <%# ゲストログイン　ボタン %>
+    <% unless logged_in? %>
+      <%= form_with url: "/guest_login", local: true, method: 'POST', class: "mt-5" do |f| %>
+        <%= f.submit "ゲストログインでお試し", class: "submit-btn mt-5 p-4", style: "color:white; background-color: #0F3D88; border-radius:10px; border:none;" %>   
+      <% end %>
+    <% end %>
   </div>
 </div>
 
