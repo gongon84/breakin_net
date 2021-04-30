@@ -163,9 +163,18 @@
           <% end %>
         <% end %>
       </div>
+
+      <%# ログインしてない場合 %>
       <% unless current_user && current_user.id == @user.id %>
-        <div class="col-12 py-3">
+        <div class="col-12 pt-5">
           <h3>※追加にはアカウントが必要です</h3>
+        </div>
+        <%# ゲストログイン　ボタン %>
+        <div class="col-12 py-2">
+          <h3>ゲストログインを使うとアカウント無しでお試しができます</h3>
+          <%= form_with url: "/guest_login", local: true, method: 'POST', class: "mt-3" do |f| %>
+            <%= f.submit "ゲストログイン", class: "submit-btn p-3" %>   
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -188,7 +197,7 @@
       </div>
     <% end %>
 
-</div>
+  </div>
 </div>
 
 
