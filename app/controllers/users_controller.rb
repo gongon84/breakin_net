@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     params.permit(
       :name,
       :profile,
-      :url,
+      :website_url,
     )
   end
 end

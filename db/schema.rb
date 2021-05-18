@@ -88,9 +88,9 @@ ActiveRecord::Schema.define(version: 2021_04_17_072001) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "url"
+    t.string "website_url"
     t.string "profile"
-    t.string "image_name"
+    t.string "avatar_image"
     t.string "activation_state"
     t.string "activation_token"
     t.datetime "activation_token_expires_at"
